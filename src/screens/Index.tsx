@@ -4,49 +4,40 @@ import SignUpForm from "../components/SignUpForm";
 import { useState } from "react";
 
 function Index() {
-  const [logInForm, setLogInForm] = useState(true);
+  const [logInForm, setLogInForm] = useState(false);
+
   return (
-    <main className="min-h-screen text-black bg-gray-300 grid grid-cols-2 gap-4 p-8">
-      <section className="flex flex-col gap-16">
-        <div className="flex gap-4 items-center text-5xl font-bold self-center">
-          <MdDateRange className="text-purple-800" size={55} /> RESERVER
+    <>
+      <div className="flex flex-1 justify-between gap-8 bg-indigo-950 py-6">
+        <div className="flex flex-1 flex-col gap-12 pl-8">
+          <header className="flex items-center justify-center gap-4 self-start p-2 text-4xl font-semibold tracking-wide text-cyan-400">
+            <MdDateRange size={55} /> RESERVER
+          </header>
+          <main>
+            <div className="mx-8 flex flex-col items-center gap-4 border-b border-t border-gray-400 p-6 text-xl">
+              <div>Reserva citas cómodas e inmediatas para sus clientes.</div>
+              <div className="font-bold text-green-400">
+                El mejor software para agendar citas en Mexico
+              </div>
+            </div>
+          </main>
         </div>
-        <ul className="self-center text-lg italic text-gray-900 flex flex-col items-center gap-4">
-          <li>Sistema de citas previas para mejorar tu negocio.</li>
-          <li>Reserva citas cómodas e inmediatas para sus clientes.</li>
-        </ul>
-
-        <div className="text-4xl self-center font-bold">
-          ¿Qué es <strong className="text-purple-800">RESERVER</strong>?
-        </div>
-        <div>
-          <div>botones</div>
-          <div>contenido de boton</div>
-        </div>
-      </section>
-
-      <section className="flex flex-col pt-12 gap-5">
-        <div className="flex self-center bg-gray-200 text-gray-500 rounded-lg shadow-lg">
-          <div
-            onClick={() => setLogInForm(false)}
-            className={`cursor-pointer px-8 py-2 pr-3 rounded-lg transition-colors duration-300 ${
-              logInForm ? "" : "bg-purple-700 text-white"
-            }`}
-          >
-            Regístrate
+        <section className="flex flex-col gap-1 transition-all">
+          <div className="mr-12 flex items-center gap-8">
+            <div className="text-4xl text-cyan-300">
+              {logInForm ? "Ingresa Ahora" : "Regístrate"}
+            </div>
+            <div
+              className="text-grey-700 cursor-pointer rounded p-2 font-bold tracking-wider transition-all hover:bg-white hover:text-blue-950"
+              onClick={() => setLogInForm(!logInForm)}
+            >
+              {!logInForm ? "Ingresa Ahora" : "Regístrate"}
+            </div>
           </div>
-          <div
-            onClick={() => setLogInForm(true)}
-            className={`cursor-pointer px-8 py-2 pl-3 rounded-lg transition-colors duration-300 ${
-              logInForm ? "bg-purple-700 text-white" : ""
-            }`}
-          >
-            Ingresa Ahora
-          </div>
-        </div>
-        {logInForm ? <LogInForm /> : <SignUpForm />}
-      </section>
-    </main>
+          {logInForm ? <LogInForm /> : <SignUpForm />}
+        </section>
+      </div>
+    </>
   );
 }
 
