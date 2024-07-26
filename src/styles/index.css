@@ -24,3 +24,7 @@ body {
   flex-direction: column;
   flex: 1;
 }
+
+.background {
+  background: linear-gradient(to bottom, #6d6faa, #00011a);
+}
