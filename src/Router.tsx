@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Index from "./screens/Index";
 import Error from "./screens/Error";
+import SignUp from "./screens/SignUp";
 
 export default function Router() {
   const router = createBrowserRouter([
@@ -13,6 +14,10 @@ export default function Router() {
         // { index: true, element: <Home /> },
         // { path: "posts", element: <Posts /> },
       ],
+    },
+    {
+      path: "/registro",
+      element: <SignUp />,
     },
   ]);
 
