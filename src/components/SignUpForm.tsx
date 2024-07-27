@@ -1,16 +1,19 @@
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
+import "../styles/Form.css";
 
 interface FormData {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   password: string;
   phone: string;
   age: string;
 }
 
-const SignUpForm: React.FC = () => {
+function SignUpForm() {
   const [formData, setFormData] = useState<FormData>({
-    name: "",
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
     phone: "",
@@ -34,83 +37,88 @@ const SignUpForm: React.FC = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-full bg-purple-600 rounded-md flex flex-col text-white p-4"
+      className="formComponent flex w-fit flex-col gap-4 rounded-md border border-white p-4"
     >
-      <div className="mb-4 text-center text-lg font-bold">Registrate</div>
-
-      <div className="grid grid-cols-[1fr,3fr] gap-4 mb-4 items-center">
-        <label className="mb-2">Name</label>
+      <div className="inputContainer">
+        <label>Nombre</label>
         <input
           type="text"
-          name="name"
-          value={formData.name}
+          name="firstName"
+          value={formData.firstName}
           onChange={handleChange}
-          className="p-2 border-2 border-transparent rounded-md text-purple-700 bg-white placeholder-gray-500 focus:outline-none focus:border-purple-900 focus:ring-1 focus:ring-purple-700"
-          placeholder="Name"
+          placeholder="Nombre"
           required
         />
       </div>
 
-      <div className="grid grid-cols-[1fr,3fr] gap-4 mb-4 items-center">
-        <label className="mb-2">Email</label>
+      <div className="inputContainer">
+        <label>Apellido</label>
+        <input
+          type="text"
+          name="lastName"
+          value={formData.lastName}
+          onChange={handleChange}
+          placeholder="Apellido"
+          required
+        />
+      </div>
+
+      <div className="inputContainer">
+        <label>Correo</label>
         <input
           type="email"
           name="email"
           value={formData.email}
           onChange={handleChange}
-          className="p-2 border-2 border-transparent rounded-md text-purple-700 bg-white placeholder-gray-500 focus:outline-none focus:border-purple-900 focus:ring-1 focus:ring-purple-700"
-          placeholder="Email"
+          placeholder="ejemplo@gmail.com"
           required
         />
       </div>
 
-      <div className="grid grid-cols-[1fr,3fr] gap-4 mb-4 items-center">
-        <label className="mb-2">Password</label>
+      <div className="inputContainer">
+        <label>Contraseña</label>
         <input
           type="password"
           name="password"
           value={formData.password}
           onChange={handleChange}
-          className="p-2 border-2 border-transparent rounded-md text-purple-700 bg-white placeholder-gray-500 focus:outline-none focus:border-purple-900 focus:ring-1 focus:ring-purple-700"
-          placeholder="Password"
+          placeholder="Pass123"
           required
         />
       </div>
 
-      <div className="grid grid-cols-[1fr,3fr] gap-4 mb-4 items-center">
-        <label className="mb-2">Phone</label>
+      <div className="inputContainer">
+        <label>Teléfono</label>
         <input
           type="tel"
           name="phone"
           value={formData.phone}
           onChange={handleChange}
-          className="p-2 border-2 border-transparent rounded-md text-purple-700 bg-white placeholder-gray-500 focus:outline-none focus:border-purple-900 focus:ring-1 focus:ring-purple-700"
-          placeholder="Phone"
+          placeholder="XXX XXX XXXX"
           required
         />
       </div>
 
-      <div className="grid grid-cols-[1fr,3fr] gap-4 mb-4 items-center">
-        <label className="mb-2">Age</label>
+      <div className="inputContainer">
+        <label>Edad</label>
         <input
           type="number"
           name="age"
           value={formData.age}
           onChange={handleChange}
-          className="p-2 border-2 border-transparent rounded-md text-purple-700 bg-white placeholder-gray-500 focus:outline-none focus:border-purple-900 focus:ring-1 focus:ring-purple-700"
-          placeholder="Age"
+          placeholder="Edad"
           required
         />
       </div>
 
       <button
         type="submit"
-        className="bg-white text-purple-600 p-2 rounded-md font-bold self-center px-8"
+        className="m-3 rounded-md bg-white px-2 py-1 text-blue-900"
       >
-        Crear cuenta
+        Registrarse
       </button>
     </form>
   );
-};
+}
 
 export default SignUpForm;
