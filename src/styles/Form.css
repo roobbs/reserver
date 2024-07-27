@@ -1,0 +1,37 @@
+.formComponent {
+  background-color: rgba(255, 255, 255, 0.129);
+  backdrop-filter: blur(1px);
+  position: relative;
+}
+.inputContainer {
+  transition: all 0.5s;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  position: relative;
+
+  & label {
+    color: white;
+  }
+
+  & input {
+    background-color: rgb(6, 0, 29);
+    color: rgb(255, 255, 255);
+    border-radius: 5px;
+    padding: 5px;
+    border: 1px solid transparent;
+
+    &:focus {
+      outline: none;
+      font-weight: 600;
+      color: rgb(0, 0, 0);
+      background-color: rgb(255, 255, 255);
+    }
+
+    &:valid {
+      background-color: rgba(80, 255, 161, 0.401);
+      border-color: rgb(0, 255, 208);
+      color: white;
+    }
+  }
+}
