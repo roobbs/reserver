@@ -45,8 +45,8 @@ function Index() {
           <strong className="self-center text-cyan-400">RESERVER</strong>?
         </div>
         <div className="flex justify-around gap-4">
-          {info.map((el) => (
-            <InfoCard title={el.title} info={el.info} />
+          {info.map((el, index) => (
+            <InfoCard key={index} title={el.title} info={el.info} />
           ))}
         </div>
       </main>
