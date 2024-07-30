@@ -1,5 +1,6 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import "../styles/Form.css";
+import GoogleAuthButton from "./GoogleAuthButton";
 
 interface FormData {
   email: string;
@@ -27,41 +28,46 @@ function LogInForm() {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="formComponent flex w-fit flex-col gap-4 rounded-md border border-white p-4"
-    >
-      <div className="inputContainer">
-        <label>Correo</label>
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          placeholder="Email"
-          required
-        />
-      </div>
+    <>
+      <GoogleAuthButton />
+      <div>O registrate aqui:</div>
 
-      <div className="inputContainer">
-        <label>Contraseña</label>
-        <input
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          placeholder="Password"
-          required
-        />
-      </div>
-
-      <button
-        type="submit"
-        className="m-3 rounded-md bg-white px-2 py-1 text-blue-900"
+      <form
+        onSubmit={handleSubmit}
+        className="formComponent flex w-fit flex-col gap-4 rounded-md border border-white p-4"
       >
-        Ingresar
-      </button>
-    </form>
+        <div className="inputContainer">
+          <label>Correo</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="Email"
+            required
+          />
+        </div>
+
+        <div className="inputContainer">
+          <label>Contraseña</label>
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            placeholder="Password"
+            required
+          />
+        </div>
+
+        <button
+          type="submit"
+          className="m-3 rounded-md bg-white px-2 py-1 text-blue-900"
+        >
+          Ingresar
+        </button>
+      </form>
+    </>
   );
 }
 
