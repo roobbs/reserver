@@ -1,5 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
+import AuthProvider from "./components/AuthContext";
+
 import Index from "./screens/Index";
 import Error from "./screens/Error";
 import SignUp from "./screens/SignUp";
@@ -30,11 +32,13 @@ export default function Router() {
     {
       path: "/home",
       element: <PrivateRoute />,
-      children: [
-        { path: "/home", element: <Home /> }, // Ruta protegida
-      ],
+      children: [{ path: "/home", element: <Home /> }],
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  );
 }
