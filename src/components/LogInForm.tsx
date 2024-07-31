@@ -1,6 +1,8 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import "../styles/Form.css";
-import GoogleAuthButton from "./GoogleAuthButton";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "./AuthContext";
 
 interface FormData {
   email: string;
@@ -12,6 +14,9 @@ function LogInForm() {
     email: "",
     password: "",
   });
+  const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
+  const { addUser } = useContext(AuthContext);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -21,17 +26,38 @@ function LogInForm() {
     });
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    // Aquí puedes manejar el envío del formulario
-    console.log(formData);
+    try {
+      const response = await fetch("http://localhost:3000/api/user/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+      console.log(result);
+
+      if (result.success) {
+        setError(null);
+        localStorage.setItem("token", result.token);
+        addUser(result.user);
+        navigate("/home");
+      } else if (!result.succes) {
+        setError(result.message);
+      } else {
+        setError(result.message || "Server error, failed to create user");
+      }
+    } catch (e) {
+      console.log(e);
+      setError("An error occurred. Please try again.");
+    }
   };
 
   return (
     <>
-      <GoogleAuthButton />
-      <div>O registrate aqui:</div>
-
       <form
         onSubmit={handleSubmit}
         className="formComponent flex w-fit flex-col gap-4 rounded-md border border-white p-4"
@@ -59,6 +85,11 @@ function LogInForm() {
             required
           />
         </div>
+        {error && (
+          <div className="rounded-md bg-red-600 p-1 text-center text-sm">
+            {error} :/
+          </div>
+        )}
 
         <button
           type="submit"
