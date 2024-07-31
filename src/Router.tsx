@@ -4,6 +4,9 @@ import Index from "./screens/Index";
 import Error from "./screens/Error";
 import SignUp from "./screens/SignUp";
 import LogIn from "./screens/LogIn";
+import AuthRedirect from "./components/AuthRedirect";
+import PrivateRoute from "./components/PrivateRoute";
+import Home from "./screens/Home";
 
 export default function Router() {
   const router = createBrowserRouter([
@@ -11,10 +14,6 @@ export default function Router() {
       path: "/",
       element: <Index />,
       errorElement: <Error />,
-      children: [
-        // { index: true, element: <Home /> },
-        // { path: "posts", element: <Posts /> },
-      ],
     },
     {
       path: "/registro",
@@ -23,6 +22,17 @@ export default function Router() {
     {
       path: "/ingresar",
       element: <LogIn />,
+    },
+    {
+      path: "/auth",
+      element: <AuthRedirect />,
+    },
+    {
+      path: "/home",
+      element: <PrivateRoute />,
+      children: [
+        { path: "/home", element: <Home /> }, // Ruta protegida
+      ],
     },
   ]);
 
