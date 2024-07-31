@@ -58,6 +58,7 @@ function SignUpForm() {
       }
     } catch (e) {
       console.log(e);
+      setError("An error occurred. Please try again.");
     }
   };
 
