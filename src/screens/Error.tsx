@@ -8,14 +8,14 @@ function Error() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-100 text-gray-800">
-      <h1 className="text-5xl font-bold m-4">404 - Página no encontrada</h1>
-      <p className="text-lg mb-8">
+    <div className="background flex h-screen flex-col items-center justify-center bg-gray-100 text-white">
+      <h1 className="m-4 text-5xl font-bold">404 - Página no encontrada</h1>
+      <p className="mb-8 text-lg">
         Lo sentimos, la página que estás buscando no existe.
       </p>
       <button
         onClick={goHome}
-        className="px-4 py-2 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-700 transition duration-300"
+        className="rounded-lg bg-green-500 px-4 py-2 font-semibold text-white transition duration-300 hover:bg-green-700"
       >
         Volver a la página principal
       </button>
