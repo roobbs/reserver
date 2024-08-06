@@ -25,13 +25,13 @@ export default function HomeHeader({ name }: HeaderProps) {
       <input type="checkbox" id="check" className="hidden" />
       <label
         htmlFor="check"
-        className="flex cursor-pointer items-center gap-2 rounded-md border border-transparent p-1 px-6 text-lg font-bold transition-all hover:border-cyan-400"
+        className="flex cursor-pointer items-center gap-2 border-b border-transparent p-1 px-6 text-lg font-bold transition-all hover:border-cyan-400"
       >
         {name} <CiUser size={30} className="rounded-full bg-blue-700 p-1" />
       </label>
-      <div className="closeSesion absolute hidden rounded-b-lg border border-cyan-600 bg-white p-4 text-lg font-bold text-blue-900">
+      <div className="closeSesion absolute hidden rounded-b-lg border border-cyan-600 bg-slate-800 p-4 py-8 text-lg font-bold text-slate-300">
         <div
-          className="cursor-pointer hover:text-blue-700"
+          className="cursor-pointer hover:text-white"
           onClick={() => {
             logOutUser();
             navigate("/");
