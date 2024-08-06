@@ -1,13 +1,17 @@
-import { useContext, useState } from "react";
-import { AuthContext } from "../components/AuthContext";
+import { useState } from "react";
+
 import { ImProfile } from "react-icons/im";
 import { MdOutlineAddBusiness } from "react-icons/md";
 import { TbCalendarUser } from "react-icons/tb";
+import { TiMessages } from "react-icons/ti";
 import "../styles/Home.css";
+import Profile from "../components/Profile";
+import Business from "../components/Business";
+import Dates from "../components/Dates";
+import Messages from "../components/Messages";
 
 export default function Home() {
   const [show, setShow] = useState("profile");
-  const { user } = useContext(AuthContext);
 
   return (
     <>
@@ -44,8 +48,21 @@ export default function Home() {
           >
             <TbCalendarUser size={30} /> Tus citas
           </div>
+          <div
+            onClick={() => setShow("messages")}
+            className={
+              show === "messages"
+                ? "sectionButton bg-blue-950 text-white transition-all"
+                : "sectionButton transition-all"
+            }
+          >
+            <TiMessages size={30} /> Tus mensajes
+          </div>
         </section>
-        {user && <div>bienvenido {user.first_name}</div>}
+        {show === "profile" && <Profile fn={() => setShow("business")} />}
+        {show === "business" && <Business />}
+        {show === "dates" && <Dates />}
+        {show === "messages" && <Messages />}
       </main>
     </>
   );
