@@ -9,7 +9,7 @@ interface ProfileProps {
 }
 
 export default function Profile({ fn }: ProfileProps) {
-  const { user } = useContext(AuthContext);
+  const { user, business } = useContext(AuthContext);
 
   return (
     <div className="flex flex-1 flex-col justify-between p-4 py-8">
@@ -41,6 +41,12 @@ export default function Profile({ fn }: ProfileProps) {
           <TbBusinessplan size={25} />
           Pública tu propio negocio
         </Link>
+      )}
+      {business && (
+        <section className="gap-4 self-center rounded p-1 px-12 font-bold">
+          <div>{business.name}</div>
+          <div>{business.availability}</div>
+        </section>
       )}
     </div>
   );
