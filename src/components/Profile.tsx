@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { AuthContext } from "../components/AuthContext";
 import { TbBusinessplan } from "react-icons/tb";
 import { MdOutlineManageSearch } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 interface ProfileProps {
   fn: () => void;
@@ -23,6 +24,7 @@ export default function Profile({ fn }: ProfileProps) {
           Ver historial de citas
         </div>
       </div>
+
       <div
         onClick={fn}
         className="flex cursor-pointer items-center gap-2 self-center rounded-md border border-transparent bg-emerald-600 px-4 py-1 text-lg transition-all hover:border-green-500 hover:bg-emerald-800"
@@ -30,11 +32,15 @@ export default function Profile({ fn }: ProfileProps) {
         <MdOutlineManageSearch size={30} />
         Busca un servicio aqui!
       </div>
+
       {!user?.service_provider && (
-        <div className="flex cursor-pointer items-center gap-4 self-end rounded border border-transparent bg-blue-900 p-1 px-12 font-bold hover:border-slate-600 hover:bg-blue-950">
+        <Link
+          to={"provider"}
+          className="flex cursor-pointer items-center gap-4 self-end rounded border border-transparent bg-blue-900 p-1 px-12 font-bold hover:border-slate-600 hover:bg-blue-950"
+        >
           <TbBusinessplan size={25} />
           Pública tu propio negocio
-        </div>
+        </Link>
       )}
     </div>
   );
