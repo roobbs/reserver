@@ -16,8 +16,14 @@ const info = [
     info: ["- Ahora podras saber cuando tendras tiempo libre"],
   },
   {
-    title: "Evita perder el tiempo de tus clientes",
+    title: "Mejora la experiencia de tus clientes",
     info: ["- Tus clientes no haran fila para obtener tus servicios"],
+  },
+  {
+    title: "Aplicacion movil",
+    info: [
+      "- Tus clientes pueden reservar desde donde sea con la aplicaciòn mòvil",
+    ],
   },
 ];
 
