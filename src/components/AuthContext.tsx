@@ -6,6 +6,7 @@ interface User {
   last_name: string;
   email: string;
   googleId: string;
+  service_provider: boolean;
   createdAt: Date;
   updatedAt: Date;
   __v: number;
