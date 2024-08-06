@@ -10,3 +10,12 @@
     border-color: rgb(0, 204, 255);
   }
 }
+
+#check:checked ~ .closeSesion {
+  display: inline-flex;
+}
+
+.closeSesion {
+  top: 100%;
+  right: 2rem;
+}
