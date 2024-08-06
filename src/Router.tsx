@@ -9,6 +9,7 @@ import LogIn from "./screens/LogIn";
 import AuthRedirect from "./components/AuthRedirect";
 import PrivateRoute from "./components/PrivateRoute";
 import Home from "./screens/Home";
+import CreateBusiness from "./screens/CreateBusiness";
 
 export default function Router() {
   const router = createBrowserRouter([
@@ -32,7 +33,10 @@ export default function Router() {
     {
       path: "/home",
       element: <PrivateRoute />,
-      children: [{ path: "/home", element: <Home /> }],
+      children: [
+        { index: true, element: <Home /> },
+        { path: "provider", element: <CreateBusiness /> },
+      ],
     },
   ]);
 
