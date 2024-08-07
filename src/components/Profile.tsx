@@ -3,6 +3,7 @@ import { AuthContext } from "../components/AuthContext";
 import { TbBusinessplan } from "react-icons/tb";
 import { MdOutlineManageSearch } from "react-icons/md";
 import { Link } from "react-router-dom";
+import BusinessSection from "./BusinessSection";
 
 interface ProfileProps {
   fn: () => void;
@@ -12,7 +13,7 @@ export default function Profile({ fn }: ProfileProps) {
   const { user, business } = useContext(AuthContext);
 
   return (
-    <div className="flex flex-1 flex-col justify-between p-4 py-8">
+    <div className="flex flex-1 flex-col justify-between gap-12 p-4 py-8">
       <div className="flex justify-around">
         <div className="rounded-sm bg-white p-12 text-slate-600">
           Tienes 0 mensajes
@@ -42,12 +43,7 @@ export default function Profile({ fn }: ProfileProps) {
           Pública tu propio negocio
         </Link>
       )}
-      {business && (
-        <section className="gap-4 self-center rounded p-1 px-12 font-bold">
-          <div>{business.name}</div>
-          <div>{business.availability}</div>
-        </section>
-      )}
+      {business && <BusinessSection />}
     </div>
   );
 }
