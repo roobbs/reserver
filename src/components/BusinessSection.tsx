@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../components/AuthContext";
 import { MdBusinessCenter } from "react-icons/md";
+import ServiceSection from "./ServiceSection";
 
 export default function BusinessSection() {
   const { user, business } = useContext(AuthContext);
@@ -34,6 +35,7 @@ export default function BusinessSection() {
           <div className="self-center">{business?.location}</div>
         </div>
       </div>
+      <ServiceSection />
     </section>
   );
 }
