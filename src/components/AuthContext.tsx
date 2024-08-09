@@ -12,6 +12,13 @@ interface User {
   __v: number;
 }
 
+interface Service {
+  name: string;
+  description: string;
+  price: number;
+  duration: number;
+}
+
 interface Business {
   _id: string;
   name: string;
@@ -20,6 +27,8 @@ interface Business {
   location?: string;
   contactInfo?: string;
   availability?: string[];
+  ratings: [];
+  servicesOffered: Service[];
   userId: string;
   createdAt: Date;
   updatedAt: Date;
