@@ -12,7 +12,7 @@ export default function ServiceSection() {
     <div className="relative flex flex-col gap-4">
       <div className="text-xl font-bold">Tus servicios:</div>
 
-      {!business?.servicesOffered && (
+      {business?.servicesOffered.length === 0 && (
         <div className="self-center rounded p-2 text-xl font-bold text-slate-800 shadow-sm shadow-slate-600">
           Actualmente no tienes ningun servicio, agrega uno!
         </div>
