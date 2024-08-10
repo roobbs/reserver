@@ -9,14 +9,14 @@ interface FormData {
   password: string;
 }
 
-function LogInForm() {
+export default function LogInForm() {
   const [formData, setFormData] = useState<FormData>({
     email: "",
     password: "",
   });
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
-  const { addUser } = useContext(AuthContext);
+  const { addUser, addBusiness, addBusinessesList } = useContext(AuthContext);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -44,8 +44,12 @@ function LogInForm() {
         setError(null);
         localStorage.setItem("token", result.token);
         addUser(result.user);
+        if (result.business !== null) {
+          addBusiness(result.business);
+        }
+        addBusinessesList(result.businessesList);
         navigate("/home");
-      } else if (!result.succes) {
+      } else if (!result.success) {
         setError(result.message);
       } else {
         setError(result.message || "Server error, failed to create user");
@@ -101,5 +105,3 @@ function LogInForm() {
     </>
   );
 }
-
-export default LogInForm;
