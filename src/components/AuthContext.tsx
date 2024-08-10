@@ -12,14 +12,14 @@ interface User {
   __v: number;
 }
 
-interface Service {
+export interface Service {
   name: string;
   description: string;
   price: number;
   duration: number;
 }
 
-interface Business {
+export interface Business {
   _id: string;
   name: string;
   type: string;
@@ -40,6 +40,8 @@ interface AuthContextType {
   logOutUser: () => void;
   business: Business | null;
   addBusiness: (business: Business) => void;
+  businessesList: Business[] | null;
+  addBusinessesList: (array: Business[]) => void;
 }
 
 interface AuthProviderProps {
@@ -52,11 +54,14 @@ export const AuthContext = createContext<AuthContextType>({
   logOutUser: () => {},
   business: null,
   addBusiness: () => {},
+  businessesList: [],
+  addBusinessesList: () => {},
 });
 
 export default function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | null>(null);
   const [business, setBusiness] = useState<Business | null>(null);
+  const [businessesList, setBusinessesList] = useState<Business[]>([]);
 
   const addUser = (user: User) => {
     setUser(user);
@@ -71,9 +76,20 @@ export default function AuthProvider({ children }: AuthProviderProps) {
   const addBusiness = (business: Business) => {
     setBusiness(business);
   };
+  const addBusinessesList = (array: Business[]) => {
+    setBusinessesList(array);
+  };
   return (
     <AuthContext.Provider
-      value={{ user, addUser, logOutUser, business, addBusiness }}
+      value={{
+        user,
+        addUser,
+        logOutUser,
+        business,
+        addBusiness,
+        businessesList,
+        addBusinessesList,
+      }}
     >
       {children}
     </AuthContext.Provider>
