@@ -14,7 +14,7 @@ interface FormData {
 function SignUpForm() {
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
-  const { addUser } = useContext(AuthContext);
+  const { addUser, addBusinessesList } = useContext(AuthContext);
 
   const [formData, setFormData] = useState<FormData>({
     first_name: "",
@@ -50,6 +50,8 @@ function SignUpForm() {
         setError(null);
         localStorage.setItem("token", result.token);
         addUser(result.user);
+        addBusinessesList(result.businessesList);
+
         navigate("/home");
       } else if (result.error.code === 11000) {
         setError(`Este correo ya existe`);
