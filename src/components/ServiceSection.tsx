@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../components/AuthContext";
 import ServiceCard from "./ServiceCard";
+import { MdOutlineMedicalServices } from "react-icons/md";
 
 export default function ServiceSection() {
   const { business } = useContext(AuthContext);
@@ -17,7 +18,7 @@ export default function ServiceSection() {
         </div>
       )}
 
-      <div className="flex gap-8">
+      <div className="flex flex-wrap justify-center gap-8">
         {business?.servicesOffered &&
           business.servicesOffered.map((service) => (
             <ServiceCard
@@ -26,15 +27,15 @@ export default function ServiceSection() {
               duration={service.duration}
             />
           ))}
-      </div>
-
-      <div
-        onClick={() => {
-          navigate("newService");
-        }}
-        className="flex cursor-pointer items-center gap-2 self-center rounded-md border border-transparent bg-emerald-600 px-4 py-1 text-lg text-white transition-all hover:border-green-500 hover:bg-emerald-800"
-      >
-        Agrega un servicio
+        <div
+          onClick={() => {
+            navigate("newService");
+          }}
+          className="flex h-full cursor-pointer items-center gap-2 self-center justify-self-center rounded-md border border-transparent bg-emerald-600 px-4 py-12 text-lg text-white transition-all hover:border-green-500 hover:bg-emerald-800"
+        >
+          <MdOutlineMedicalServices size={35} />
+          Agrega un servicio
+        </div>
       </div>
     </div>
   );
