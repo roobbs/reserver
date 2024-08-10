@@ -4,7 +4,7 @@ import { AuthContext } from "./AuthContext";
 
 export default function AuthRedirect() {
   const navigate = useNavigate();
-  const { addUser, addBusiness } = useContext(AuthContext);
+  const { addUser, addBusiness, addBusinessesList } = useContext(AuthContext);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -12,6 +12,7 @@ export default function AuthRedirect() {
     const expiresIn = params.get("expiresIn");
     const userString = params.get("user");
     const businessString = params.get("business");
+    const businessesListString = params.get("businessesList");
 
     (async () => {
       if (token && userString) {
@@ -20,10 +21,14 @@ export default function AuthRedirect() {
 
         try {
           const user = await JSON.parse(userString);
-          const business = await JSON.parse(businessString);
+          const business = businessString ? JSON.parse(businessString) : null;
+          const businessesList = businessesListString
+            ? JSON.parse(businessesListString)
+            : [];
           console.log(user);
           console.log(business);
           await addBusiness(business);
+          addBusinessesList(businessesList);
           await addUser(user);
           navigate("/home");
         } catch (error) {
@@ -33,7 +38,7 @@ export default function AuthRedirect() {
         console.error("Token not found");
       }
     })();
-  }, [navigate, addUser, addBusiness]);
+  }, [navigate, addUser, addBusiness, addBusinessesList]);
 
   return (
     <div className="background flex flex-1 items-center justify-center">
