@@ -11,6 +11,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import Home from "./screens/Home";
 import CreateBusiness from "./screens/CreateBusiness";
 import CreateService from "./screens/CreateService";
+import ServiceInfo from "./screens/ServiceInfo";
 
 export default function Router() {
   const router = createBrowserRouter([
@@ -38,6 +39,7 @@ export default function Router() {
         { index: true, element: <Home /> },
         { path: "provider", element: <CreateBusiness /> },
         { path: "newService", element: <CreateService /> },
+        { path: "service/:id", element: <ServiceInfo /> },
       ],
     },
   ]);
