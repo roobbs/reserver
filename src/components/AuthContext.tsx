@@ -18,6 +18,7 @@ export interface Service {
   description: string;
   price: number;
   duration: number;
+  providerId: string;
 }
 
 export interface Business {
