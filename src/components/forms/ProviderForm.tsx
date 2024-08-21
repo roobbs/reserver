@@ -1,8 +1,8 @@
 import { useState, ChangeEvent, FormEvent } from "react";
-import "../styles/Form.css";
+import "../../styles/Form.css";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "./auth/AuthContext";
+import { AuthContext } from "../auth/AuthContext";
 
 const daysOfWeek = [
   "Lunes",

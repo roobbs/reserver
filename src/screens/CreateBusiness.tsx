@@ -1,4 +1,4 @@
-import ProviderForm from "../components/ProviderForm";
+import ProviderForm from "../components/forms/ProviderForm";
 
 export default function CreateBusiness() {
   return (

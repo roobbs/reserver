@@ -1,4 +1,4 @@
-import SignUpForm from "../components/SignUpForm";
+import SignUpForm from "../components/forms/SignUpForm";
 import { CiCalendar } from "react-icons/ci";
 import GoogleAuthButton from "../components/auth/googleAuth/GoogleAuthButton";
 import { useNavigate } from "react-router-dom";

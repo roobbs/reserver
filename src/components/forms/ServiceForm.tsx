@@ -1,6 +1,6 @@
 import { useState, ChangeEvent, FormEvent, useContext } from "react";
-import { AuthContext } from "./auth/AuthContext";
-import "../styles/Form.css";
+import { AuthContext } from "../auth/AuthContext";
+import "../../styles/Form.css";
 import { useNavigate } from "react-router-dom";
 
 interface ServiceFormData {

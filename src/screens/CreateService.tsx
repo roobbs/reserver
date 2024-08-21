@@ -1,4 +1,4 @@
-import ServiceForm from "../components/ServiceForm";
+import ServiceForm from "../components/forms/ServiceForm";
 
 export default function CreateService() {
   return (
