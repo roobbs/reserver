@@ -6,7 +6,7 @@ import Index from "./screens/Index";
 import Error from "./screens/Error";
 import SignUp from "./screens/SignUp";
 import LogIn from "./screens/LogIn";
-import AuthRedirect from "./components/AuthRedirect";
+import AuthRedirect from "./components/auth/googleAuth/AuthRedirect";
 import PrivateRoute from "./components/PrivateRoute";
 import Home from "./screens/Home";
 import CreateBusiness from "./screens/CreateBusiness";

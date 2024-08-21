@@ -1,6 +1,6 @@
 import { useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "./auth/AuthContext";
+import { AuthContext } from "../AuthContext";
 
 export default function AuthRedirect() {
   const navigate = useNavigate();

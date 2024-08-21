@@ -1,6 +1,6 @@
 import SignUpForm from "../components/SignUpForm";
 import { CiCalendar } from "react-icons/ci";
-import GoogleAuthButton from "../components/GoogleAuthButton";
+import GoogleAuthButton from "../components/auth/googleAuth/GoogleAuthButton";
 import { useNavigate } from "react-router-dom";
 
 export default function SignUp() {
