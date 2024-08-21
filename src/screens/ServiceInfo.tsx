@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import { Service, AuthContext } from "../components/AuthContext";
+import { Service, AuthContext } from "../components/auth/AuthContext";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 

@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import AuthProvider from "./components/AuthContext";
+import AuthProvider from "./components/auth/AuthContext";
 
 import Index from "./screens/Index";
 import Error from "./screens/Error";

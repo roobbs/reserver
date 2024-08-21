@@ -1,4 +1,4 @@
-import { Service } from "./AuthContext";
+import { Service } from "./auth/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 interface ServiceInfoProps {

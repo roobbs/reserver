@@ -2,7 +2,7 @@ import { CiCalendar } from "react-icons/ci";
 import { CiUser } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import { AuthContext } from "./AuthContext";
+import { AuthContext } from "./auth/AuthContext";
 
 interface HeaderProps {
   name: string;

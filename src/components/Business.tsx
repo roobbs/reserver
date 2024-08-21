@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AuthContext } from "../components/AuthContext";
+import { AuthContext } from "./auth/AuthContext";
 import BusinessCard from "./BusinessCard";
 
 export default function Business() {

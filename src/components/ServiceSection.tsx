@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import { AuthContext } from "../components/AuthContext";
+import { AuthContext } from "./auth/AuthContext";
 import ServiceCard from "./ServiceCard";
 import { MdOutlineMedicalServices } from "react-icons/md";
 

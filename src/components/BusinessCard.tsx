@@ -1,4 +1,4 @@
-import { Business } from "./AuthContext";
+import { Business } from "./auth/AuthContext";
 import ServiceInfoCard from "./ServiceInfoCard";
 
 interface BusinessCardProps {
@@ -27,12 +27,16 @@ export default function BusinessCard({ business }: BusinessCardProps) {
       <div className="self-start">
         {business.ratings ? "Aun no tiene reseñas" : business.ratings}
       </div>
+
       <div className="border-grey-900 flex flex-wrap justify-center gap-8 border-t-2 py-4">
         <div className="font-bold">Servicios:</div>
         {business.servicesOffered.length > 0 &&
           business.servicesOffered.map((service, index) => (
             <ServiceInfoCard key={index} service={service} />
           ))}
+      </div>
+      <div className="cursor-pointer self-center rounded border border-gray-900 bg-green-600 p-2 text-white hover:border-green-800 hover:bg-emerald-600">
+        Ver más de este negocio
       </div>
     </div>
   );

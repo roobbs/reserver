@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AuthContext } from "../components/AuthContext";
+import { AuthContext } from "./auth/AuthContext";
 import { TbBusinessplan } from "react-icons/tb";
 import { MdOutlineManageSearch } from "react-icons/md";
 import { Link } from "react-router-dom";

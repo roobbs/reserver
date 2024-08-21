@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AuthContext } from "../components/AuthContext";
+import { AuthContext } from "./auth/AuthContext";
 import { MdBusinessCenter } from "react-icons/md";
 import ServiceSection from "./ServiceSection";
 

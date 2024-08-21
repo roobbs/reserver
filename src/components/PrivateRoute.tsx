@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Outlet } from "react-router-dom";
-import { AuthContext } from "./AuthContext";
+import { AuthContext } from "./auth/AuthContext";
 import AuthError from "../screens/AuthError";
 import HomeHeader from "./HomeHeader";
 
