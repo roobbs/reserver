@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AuthProvider from "./components/auth/AuthContext";
 
 import Index from "./screens/Index";
-import Error from "./screens/Error";
+import Error from "./screens/error/Error";
 import SignUp from "./screens/SignUp";
 import LogIn from "./screens/LogIn";
 import AuthRedirect from "./components/auth/googleAuth/AuthRedirect";
