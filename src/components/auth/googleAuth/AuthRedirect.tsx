@@ -4,7 +4,8 @@ import { AuthContext } from "../AuthContext";
 
 export default function AuthRedirect() {
   const navigate = useNavigate();
-  const { addUser, addBusiness, addBusinessesList } = useContext(AuthContext);
+  const { addUser, addBusiness, addBusinessesList, addAppointments } =
+    useContext(AuthContext);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -13,6 +14,7 @@ export default function AuthRedirect() {
     const userString = params.get("user");
     const businessString = params.get("business");
     const businessesListString = params.get("businessesList");
+    const appointmentString = params.get("appointments");
 
     (async () => {
       if (token && userString) {
@@ -25,10 +27,12 @@ export default function AuthRedirect() {
           const businessesList = businessesListString
             ? JSON.parse(businessesListString)
             : [];
-          console.log(user);
-          console.log(business);
+          const appointments = appointmentString
+            ? JSON.parse(appointmentString)
+            : [];
           await addBusiness(business);
           addBusinessesList(businessesList);
+          addAppointments(appointments);
           await addUser(user);
           navigate("/home");
         } catch (error) {
