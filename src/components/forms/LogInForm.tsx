@@ -16,7 +16,8 @@ export default function LogInForm() {
   });
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
-  const { addUser, addBusiness, addBusinessesList } = useContext(AuthContext);
+  const { addUser, addBusiness, addBusinessesList, addAppointments } =
+    useContext(AuthContext);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -46,6 +47,9 @@ export default function LogInForm() {
         addUser(result.user);
         if (result.business !== null) {
           addBusiness(result.business);
+        }
+        if (result.appointments !== null) {
+          addAppointments(result.appointments);
         }
         addBusinessesList(result.businessesList);
         navigate("/home");
