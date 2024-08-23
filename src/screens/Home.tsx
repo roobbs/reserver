@@ -39,9 +39,9 @@ export default function Home() {
             <MdOutlineAddBusiness size={30} /> Negocios
           </div>
           <div
-            onClick={() => setShow("dates")}
+            onClick={() => setShow("appointments")}
             className={
-              show === "dates"
+              show === "appointments"
                 ? "sectionButton bg-blue-950 text-white transition-all"
                 : "sectionButton transition-all"
             }
@@ -59,7 +59,12 @@ export default function Home() {
             <TiMessages size={30} /> Tus mensajes
           </div>
         </section>
-        {show === "profile" && <Profile fn={() => setShow("business")} />}
+        {show === "profile" && (
+          <Profile
+            serviceFn={() => setShow("business")}
+            appointmentFn={() => setShow("appointments")}
+          />
+        )}
         {show === "business" && <Business />}
         {show === "dates" && <Dates />}
         {show === "messages" && <Messages />}
