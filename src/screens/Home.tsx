@@ -7,7 +7,7 @@ import { TiMessages } from "react-icons/ti";
 import "../styles/Home.css";
 import Profile from "../components/Profile";
 import Business from "../components/Business";
-import Dates from "../components/Dates";
+import Appointments from "../components/Appointments";
 import Messages from "../components/Messages";
 
 export default function Home() {
@@ -66,7 +66,7 @@ export default function Home() {
           />
         )}
         {show === "business" && <Business />}
-        {show === "dates" && <Dates />}
+        {show === "appointments" && <Appointments />}
         {show === "messages" && <Messages />}
       </main>
     </>
