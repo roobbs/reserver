@@ -21,6 +21,14 @@ export interface Service {
   providerId: string;
 }
 
+export interface Appointment {
+  _id: string;
+  providerId: string;
+  date: Date;
+  status: string;
+  createdAt: Date;
+}
+
 export interface Business {
   _id: string;
   name: string;
@@ -44,6 +52,8 @@ interface AuthContextType {
   addBusiness: (business: Business) => void;
   businessesList: Business[] | null;
   addBusinessesList: (array: Business[]) => void;
+  appointments: Appointment[] | null;
+  addAppointments: (appointment: Appointment[]) => void;
 }
 
 interface AuthProviderProps {
@@ -58,12 +68,15 @@ export const AuthContext = createContext<AuthContextType>({
   addBusiness: () => {},
   businessesList: [],
   addBusinessesList: () => {},
+  appointments: [],
+  addAppointments: () => {},
 });
 
 export default function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | null>(null);
   const [business, setBusiness] = useState<Business | null>(null);
   const [businessesList, setBusinessesList] = useState<Business[]>([]);
+  const [appointments, setAppointments] = useState<Appointment[]>([]);
 
   const addUser = (user: User) => {
     setUser(user);
@@ -81,6 +94,9 @@ export default function AuthProvider({ children }: AuthProviderProps) {
   const addBusinessesList = (array: Business[]) => {
     setBusinessesList(array);
   };
+  const addAppointments = (array: Appointment[]) => {
+    setAppointments(array);
+  };
   return (
     <AuthContext.Provider
       value={{
@@ -91,6 +107,8 @@ export default function AuthProvider({ children }: AuthProviderProps) {
         addBusiness,
         businessesList,
         addBusinessesList,
+        appointments,
+        addAppointments,
       }}
     >
       {children}
