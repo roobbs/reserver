@@ -10,7 +10,7 @@ interface ProfileProps {
 }
 
 export default function Profile({ fn }: ProfileProps) {
-  const { user, business } = useContext(AuthContext);
+  const { user, business, appointments } = useContext(AuthContext);
 
   return (
     <div className="flex flex-1 flex-col justify-between gap-10 p-4 py-8">
@@ -21,7 +21,7 @@ export default function Profile({ fn }: ProfileProps) {
             Tienes 0 mensajes
           </div>
           <div className="rounded-sm bg-slate-100 p-12 text-slate-600 shadow-sm shadow-slate-600">
-            Tienes 0 citas pendientes
+            Tienes {appointments?.length} citas pendiente(s)
           </div>
           <div className="rounded-sm bg-slate-100 p-12 text-slate-600 shadow-sm shadow-slate-600">
             Ver historial de citas
