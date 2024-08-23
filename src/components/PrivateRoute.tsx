@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Outlet } from "react-router-dom";
 import { AuthContext } from "./auth/AuthContext";
-import AuthError from "../screens/AuthError";
+import AuthError from "../screens/error/AuthError";
 import HomeHeader from "./HomeHeader";
 
 const PrivateRoute = () => {
