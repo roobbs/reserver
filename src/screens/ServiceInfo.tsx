@@ -7,15 +7,16 @@ export default function ServiceInfo() {
   const location = useLocation();
   const service = location.state.service as Service;
   const [date, setDate] = useState<string>("");
+  const [time, setTime] = useState<string>("");
   const [message, setMessage] = useState<string>("");
-  const { user } = useContext(AuthContext);
+  const { user, addSingleAppointment } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
   const today = new Date().toISOString().split("T")[0];
 
   const handleCreateAppointment = async () => {
-    if (date != "") {
+    if (date !== "" && time !== "") {
       try {
         const response = await fetch(`http://localhost:3000/api/appointment`, {
           method: "POST",
@@ -27,12 +28,14 @@ export default function ServiceInfo() {
             providerId: service.providerId,
             serviceId: service._id,
             date,
+            time,
           }),
         });
 
         const data = await response.json();
 
         if (data.success) {
+          addSingleAppointment(data.appointment);
           navigate("/home");
           alert("Cita creada con éxito");
         } else {
@@ -43,14 +46,14 @@ export default function ServiceInfo() {
         alert("Error al crear la cita");
       }
     } else {
-      setMessage("Selecciona una fecha por favor");
+      setMessage("Selecciona una fecha y una hora por favor");
     }
   };
 
   return (
     <div className="flex flex-1 flex-col gap-8 bg-white p-8 text-blue-900">
       <div className="border-b text-lg">
-        Elige una fecha para reservar el siguiente servicio:
+        Elige una fecha y hora para reservar el siguiente servicio:
       </div>
       <div className="flex justify-around">
         <div className="flex w-fit flex-col items-center gap-3 self-center p-3 text-lg text-blue-950">
@@ -58,8 +61,8 @@ export default function ServiceInfo() {
             {service.name}
           </div>
           <p className="text-md font-bold italic">{service.description}</p>
-          <p>Duration: {service.duration} minutes</p>
-          <p>Price: ${service.price}</p>
+          <p>Duración: {service.duration} minutos</p>
+          <p>Precio: ${service.price}</p>
         </div>
         <div className="flex flex-col items-center gap-1 self-center">
           <label htmlFor="date">Elige una fecha:</label>
@@ -70,10 +73,18 @@ export default function ServiceInfo() {
             onChange={(e) => setDate(e.target.value)}
             className="rounded bg-slate-900 p-4 text-white outline-none transition-all hover:bg-slate-600"
           />
+          <label htmlFor="time">Elige una hora:</label>
+          <input
+            id="time"
+            type="time"
+            value={time}
+            onChange={(e) => setTime(e.target.value)}
+            className="rounded bg-slate-900 p-4 text-white outline-none transition-all hover:bg-slate-600"
+          />
         </div>
       </div>
       <div className="self-center text-lg text-red-600">
-        {date === "" && message}
+        {(date === "" || time === "") && message}
       </div>
       <div
         onClick={handleCreateAppointment}
