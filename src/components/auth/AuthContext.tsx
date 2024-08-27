@@ -57,6 +57,7 @@ interface AuthContextType {
   appointments: Appointment[] | null;
   addAppointments: (appointment: Appointment[]) => void;
   addSingleAppointment: (appointment: Appointment) => void;
+  updateAppointment: (id: string) => void;
 }
 
 interface AuthProviderProps {
@@ -74,6 +75,7 @@ export const AuthContext = createContext<AuthContextType>({
   appointments: [],
   addAppointments: () => {},
   addSingleAppointment: () => {},
+  updateAppointment: () => {},
 });
 
 export default function AuthProvider({ children }: AuthProviderProps) {
@@ -104,6 +106,17 @@ export default function AuthProvider({ children }: AuthProviderProps) {
   const addSingleAppointment = (appointment: Appointment) => {
     setAppointments((prevAppointments) => [...prevAppointments, appointment]);
   };
+  const updateAppointment = (id: string) => {
+    const newAppoinmentsArray: Appointment[] = appointments.map(
+      (appointment) => {
+        if (appointment._id === id) {
+          appointment.status = "canceled";
+        }
+        return appointment;
+      },
+    );
+    setAppointments(newAppoinmentsArray);
+  };
   return (
     <AuthContext.Provider
       value={{
@@ -117,6 +130,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
         appointments,
         addAppointments,
         addSingleAppointment,
+        updateAppointment,
       }}
     >
       {children}
