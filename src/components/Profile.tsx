@@ -13,6 +13,12 @@ interface ProfileProps {
 export default function Profile({ serviceFn, appointmentFn }: ProfileProps) {
   const { user, business, appointments } = useContext(AuthContext);
 
+  const today = new Date().toISOString().split("T")[0];
+  const pendingAppointments = appointments
+    ? appointments.filter(
+        (a) => new Date(a.date) >= new Date(today) && a.status !== "canceled",
+      )
+    : [];
   return (
     <div className="flex flex-1 flex-col justify-between gap-10 p-4 py-8">
       <section className="flex flex-col gap-4 rounded bg-white p-8">
@@ -25,7 +31,7 @@ export default function Profile({ serviceFn, appointmentFn }: ProfileProps) {
             onClick={appointmentFn}
             className="cursor-pointer rounded-sm bg-slate-100 p-12 text-slate-600 shadow-sm shadow-slate-600 transition-all hover:bg-slate-900 hover:text-white"
           >
-            Tienes {appointments?.length} citas pendiente(s)
+            Tienes {pendingAppointments?.length} citas pendiente(s)
           </div>
           <div className="rounded-sm bg-slate-100 p-12 text-slate-600 shadow-sm shadow-slate-600 transition-all hover:bg-slate-900 hover:text-white">
             Ver historial de citas
