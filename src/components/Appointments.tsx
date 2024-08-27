@@ -10,15 +10,21 @@ export default function Appointments() {
   const today = new Date().toISOString().split("T")[0];
 
   const pastAppointments = appointments
-    ? appointments.filter((a) => new Date(a.date) < new Date(today))
+    ? appointments.filter(
+        (a) => new Date(a.date) < new Date(today) && a.status !== "canceled",
+      )
     : [];
   const todayAppointments = appointments
     ? appointments.filter(
-        (a) => new Date(a.date).toISOString().split("T")[0] === today,
+        (a) =>
+          new Date(a.date).toISOString().split("T")[0] === today &&
+          a.status !== "canceled",
       )
     : [];
   const futureAppointments = appointments
-    ? appointments.filter((a) => new Date(a.date) > new Date(today))
+    ? appointments.filter(
+        (a) => new Date(a.date) > new Date(today) && a.status !== "canceled",
+      )
     : [];
 
   return (
