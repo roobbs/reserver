@@ -14,22 +14,23 @@ export default function HomeHeader({ name }: HeaderProps) {
   const navigate = useNavigate();
 
   return (
-    <header className="relative flex items-center justify-between bg-blue-950 px-12 py-2 last:flex">
+    <header className="relative flex items-center justify-between bg-white px-12 py-1 text-blue-950 last:flex">
       <CiCalendar
         size={35}
         onClick={() => {
           navigate("/home");
         }}
-        className="hover:text-cyan-400"
+        className="hover:text-emerald-600"
       />
       <input type="checkbox" id="check" className="hidden" />
       <label
         htmlFor="check"
-        className="flex cursor-pointer items-center gap-2 border-b border-transparent p-1 px-6 text-lg font-bold transition-all hover:border-cyan-400"
+        className="flex cursor-pointer items-center gap-2 border-b border-transparent p-1 px-6 text-lg font-bold transition-all hover:border-blue-900"
       >
-        {name} <CiUser size={30} className="rounded-full bg-blue-700 p-1" />
+        {name}{" "}
+        <CiUser size={30} className="rounded-full bg-blue-700 p-1 text-white" />
       </label>
-      <div className="closeSesion absolute hidden rounded-b-lg border border-cyan-600 bg-slate-800 p-4 py-8 text-lg font-bold text-slate-300">
+      <div className="closeSesion absolute hidden rounded-b-lg border border-white bg-indigo-950 p-4 py-8 text-lg font-bold text-slate-300">
         <div
           className="cursor-pointer hover:text-white"
           onClick={() => {
