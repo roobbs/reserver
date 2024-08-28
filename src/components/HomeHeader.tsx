@@ -15,13 +15,10 @@ export default function HomeHeader({ name }: HeaderProps) {
 
   return (
     <header className="relative flex items-center justify-between bg-white px-12 py-1 text-blue-950 last:flex">
-      <CiCalendar
-        size={35}
-        onClick={() => {
-          navigate("/home");
-        }}
-        className="hover:text-emerald-600"
-      />
+      <div className="flex cursor-none items-center gap-1 hover:text-emerald-500">
+        <CiCalendar size={35} />
+        <div className="text-lg font-bold">RESERVER</div>
+      </div>
       <input type="checkbox" id="check" className="hidden" />
       <label
         htmlFor="check"
