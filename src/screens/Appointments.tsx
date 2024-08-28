@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
-import { AuthContext } from "./auth/AuthContext";
-import AppointmentCard from "./AppointmentCard";
-import PastAppointmentCard from "./PastAppoinmentCard";
+import { AuthContext } from "../components/auth/AuthContext";
+import AppointmentCard from "../components/AppointmentCard";
+import PastAppointmentCard from "../components/PastAppoinmentCard";
 import { IoToday } from "react-icons/io5";
 import { IoIosToday } from "react-icons/io";
 import { CiCircleChevUp, CiCircleChevDown } from "react-icons/ci";
@@ -31,7 +31,7 @@ export default function Appointments() {
     : [];
 
   return (
-    <div className="flex flex-1 flex-col gap-8 p-6">
+    <div className="flex flex-1 flex-col gap-8 bg-slate-300 p-6">
       {todayAppointments.length > 0 && (
         <div className="flex flex-col gap-2">
           <h3 className="flex cursor-pointer items-center gap-2 self-center border-b border-white px-2 py-1 pl-4 text-3xl font-bold">

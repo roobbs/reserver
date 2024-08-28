@@ -1,16 +1,11 @@
 import { useContext } from "react";
-import { AuthContext } from "./auth/AuthContext";
+import { AuthContext } from "../components/auth/AuthContext";
 import { TbBusinessplan } from "react-icons/tb";
 import { MdOutlineManageSearch } from "react-icons/md";
 import { Link } from "react-router-dom";
-import BusinessSection from "./BusinessSection";
+import BusinessSection from "../components/BusinessSection";
 
-interface ProfileProps {
-  serviceFn: () => void;
-  appointmentFn: () => void;
-}
-
-export default function Profile({ serviceFn, appointmentFn }: ProfileProps) {
+export default function Profile() {
   const { user, business, appointments } = useContext(AuthContext);
 
   const today = new Date().toISOString().split("T")[0];
@@ -20,15 +15,15 @@ export default function Profile({ serviceFn, appointmentFn }: ProfileProps) {
       )
     : [];
   return (
-    <div className="flex flex-1 flex-col justify-between gap-10 p-4 py-8">
-      <section className="flex flex-col gap-4 rounded bg-white p-8">
+    <div className="flex flex-1 flex-col justify-between gap-10 bg-slate-300 p-4 py-8">
+      <section className="flex flex-col gap-4 rounded bg-white p-8 shadow-md shadow-slate-600">
         <div className="text-xl font-bold text-blue-900">Tú información:</div>
         <div className="flex justify-around rounded">
           <div className="rounded-sm bg-slate-100 p-12 text-slate-600 shadow-sm shadow-slate-600 transition-all hover:bg-slate-900 hover:text-white">
             Tienes 0 mensajes
           </div>
           <div
-            onClick={appointmentFn}
+            onClick={() => {}}
             className="cursor-pointer rounded-sm bg-slate-100 p-12 text-slate-600 shadow-sm shadow-slate-600 transition-all hover:bg-slate-900 hover:text-white"
           >
             Tienes {pendingAppointments?.length} citas pendiente(s)
@@ -40,7 +35,7 @@ export default function Profile({ serviceFn, appointmentFn }: ProfileProps) {
       </section>
 
       <div
-        onClick={serviceFn}
+        onClick={() => {}}
         className="flex cursor-pointer items-center gap-2 self-center rounded-md border border-transparent bg-emerald-600 px-4 py-1 text-lg transition-all hover:border-green-500 hover:bg-emerald-800"
       >
         <MdOutlineManageSearch size={30} />
@@ -49,7 +44,7 @@ export default function Profile({ serviceFn, appointmentFn }: ProfileProps) {
 
       {!user?.service_provider && (
         <Link
-          to={"provider"}
+          to={"createBusiness"}
           className="flex cursor-pointer items-center gap-4 self-end rounded border border-transparent bg-blue-900 p-1 px-12 font-bold hover:border-slate-600 hover:bg-blue-950"
         >
           <TbBusinessplan size={25} />
