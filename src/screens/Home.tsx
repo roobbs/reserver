@@ -16,12 +16,12 @@ export default function Home() {
   return (
     <>
       <main className="flex flex-1 flex-col">
-        <section className="flex justify-around gap-12 bg-white px-8 py-2 text-blue-900">
+        <section className="flex justify-around gap-12 bg-blue-950 px-8 py-2 text-white">
           <div
             onClick={() => setShow("profile")}
             className={
               show === "profile"
-                ? "sectionButton bg-blue-950 text-white transition-all"
+                ? "sectionButton border border-white transition-all"
                 : "sectionButton transition-all"
             }
           >
@@ -32,7 +32,7 @@ export default function Home() {
             onClick={() => setShow("business")}
             className={
               show === "business"
-                ? "sectionButton bg-blue-950 text-white transition-all"
+                ? "sectionButton border border-white transition-all"
                 : "sectionButton transition-all"
             }
           >
@@ -42,7 +42,7 @@ export default function Home() {
             onClick={() => setShow("appointments")}
             className={
               show === "appointments"
-                ? "sectionButton bg-blue-950 text-white transition-all"
+                ? "sectionButton border border-white transition-all"
                 : "sectionButton transition-all"
             }
           >
@@ -52,7 +52,7 @@ export default function Home() {
             onClick={() => setShow("messages")}
             className={
               show === "messages"
-                ? "sectionButton bg-blue-950 text-white transition-all"
+                ? "sectionButton border border-white transition-all"
                 : "sectionButton transition-all"
             }
           >
