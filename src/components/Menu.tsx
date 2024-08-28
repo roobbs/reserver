@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { ImProfile } from "react-icons/im";
 import { MdOutlineAddBusiness } from "react-icons/md";
@@ -8,12 +9,16 @@ import "../styles/Home.css";
 
 export default function Menu() {
   const [show, setShow] = useState("profile");
+  const navigate = useNavigate();
 
   return (
     <>
       <section className="flex justify-around gap-12 bg-blue-950 px-8 py-2 text-white">
         <div
-          onClick={() => setShow("profile")}
+          onClick={() => {
+            setShow("profile");
+            navigate("/profile");
+          }}
           className={
             show === "profile"
               ? "sectionButton border border-white transition-all"
@@ -24,7 +29,10 @@ export default function Menu() {
           Perfil
         </div>
         <div
-          onClick={() => setShow("business")}
+          onClick={() => {
+            setShow("business");
+            navigate("/business");
+          }}
           className={
             show === "business"
               ? "sectionButton border border-white transition-all"
@@ -34,7 +42,10 @@ export default function Menu() {
           <MdOutlineAddBusiness size={30} /> Negocios
         </div>
         <div
-          onClick={() => setShow("appointments")}
+          onClick={() => {
+            setShow("appointments");
+            navigate("/appointments");
+          }}
           className={
             show === "appointments"
               ? "sectionButton border border-white transition-all"
@@ -44,7 +55,10 @@ export default function Menu() {
           <TbCalendarUser size={30} /> Tus citas
         </div>
         <div
-          onClick={() => setShow("messages")}
+          onClick={() => {
+            setShow("messages");
+            navigate("/messages");
+          }}
           className={
             show === "messages"
               ? "sectionButton border border-white transition-all"
