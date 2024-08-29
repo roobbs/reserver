@@ -13,7 +13,7 @@ export default function Menu() {
 
   return (
     <>
-      <section className="flex justify-around gap-12 bg-blue-950 px-8 py-2 text-white">
+      <section className="flex justify-around gap-12 bg-slate-900 px-8 py-2 text-white">
         <div
           onClick={() => {
             setShow("profile");
@@ -21,8 +21,8 @@ export default function Menu() {
           }}
           className={
             show === "profile"
-              ? "sectionButton border border-white transition-all"
-              : "sectionButton transition-all"
+              ? "sectionButton border border-white bg-blue-950 transition-colors"
+              : "sectionButton transition-colors"
           }
         >
           <ImProfile size={30} />
@@ -35,8 +35,8 @@ export default function Menu() {
           }}
           className={
             show === "business"
-              ? "sectionButton border border-white transition-all"
-              : "sectionButton transition-all"
+              ? "sectionButton border border-white bg-blue-950 transition-colors"
+              : "sectionButton transition-colors"
           }
         >
           <MdOutlineAddBusiness size={30} /> Negocios
@@ -48,8 +48,8 @@ export default function Menu() {
           }}
           className={
             show === "appointments"
-              ? "sectionButton border border-white transition-all"
-              : "sectionButton transition-all"
+              ? "sectionButton border border-white bg-blue-950 transition-colors"
+              : "sectionButton transition-colors"
           }
         >
           <TbCalendarUser size={30} /> Tus citas
@@ -61,8 +61,8 @@ export default function Menu() {
           }}
           className={
             show === "messages"
-              ? "sectionButton border border-white transition-all"
-              : "sectionButton transition-all"
+              ? "sectionButton border border-white bg-blue-950 transition-colors"
+              : "sectionButton transition-colors"
           }
         >
           <TiMessages size={30} /> Tus mensajes
