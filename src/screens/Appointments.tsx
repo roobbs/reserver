@@ -8,7 +8,7 @@ import { CiCircleChevUp, CiCircleChevDown } from "react-icons/ci";
 
 export default function Appointments() {
   const { appointments } = useContext(AuthContext);
-  const [showPastAppointments, setShowPastAppointments] = useState(false);
+  const [showPastAppointments, setShowPastAppointments] = useState(true);
 
   const today = new Date().toISOString().split("T")[0];
 
@@ -31,10 +31,10 @@ export default function Appointments() {
     : [];
 
   return (
-    <div className="flex flex-1 flex-col gap-8 bg-slate-300 p-6">
+    <div className="flex flex-1 flex-col gap-12 bg-gray-200 p-6 pb-16 text-slate-900">
       {todayAppointments.length > 0 && (
         <div className="flex flex-col gap-2">
-          <h3 className="flex cursor-pointer items-center gap-2 self-center border-b border-white px-2 py-1 pl-4 text-3xl font-bold">
+          <h3 className="flex cursor-pointer items-center gap-2 self-center border-b border-slate-500 px-2 py-1 pl-4 text-3xl font-bold">
             <IoToday /> Cita(s) de Hoy
           </h3>
           <div className="flex justify-center gap-6">
@@ -58,7 +58,7 @@ export default function Appointments() {
         </div>
       )}
       {pastAppointments.length > 0 && (
-        <div className="flex flex-col gap-4 rounded bg-white p-4 text-slate-900">
+        <div className="flex flex-col gap-4 rounded bg-white p-4 text-slate-900 shadow-lg shadow-slate-500">
           <h3
             onClick={() => setShowPastAppointments(!showPastAppointments)}
             className="flex cursor-pointer items-center gap-2 border-b border-b-slate-400 pb-2 text-3xl hover:text-blue-900"
