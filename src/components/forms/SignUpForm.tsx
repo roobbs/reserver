@@ -52,7 +52,7 @@ function SignUpForm() {
         addUser(result.user);
         addBusinessesList(result.businessesList);
 
-        navigate("/home");
+        navigate("/profile");
       } else if (result.error.code === 11000) {
         setError(`Este correo ya existe`);
       } else {

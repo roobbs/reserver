@@ -36,7 +36,7 @@ export default function ServiceInfo() {
 
         if (data.success) {
           addSingleAppointment(data.appointment);
-          navigate("/home");
+          navigate("/appointments");
           alert("Cita creada con éxito");
         } else {
           alert("Error al crear la cita");

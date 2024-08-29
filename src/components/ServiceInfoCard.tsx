@@ -10,7 +10,7 @@ export default function ServiceInfoCard({ service }: ServiceInfoProps) {
 
   function goToService() {
     if (service._id) {
-      navigate(`/home/service/${service._id}`, { state: { service } });
+      navigate(`service/${service._id}`, { state: { service } });
     }
   }
 

@@ -34,7 +34,7 @@ export default function AuthRedirect() {
           addBusinessesList(businessesList);
           addAppointments(appointments);
           await addUser(user);
-          navigate("/home");
+          navigate("/profile");
         } catch (error) {
           console.error("Failed to parse user:", error);
         }
@@ -42,7 +42,7 @@ export default function AuthRedirect() {
         console.error("Token not found");
       }
     })();
-  }, [navigate, addUser, addBusiness, addBusinessesList]);
+  }, [navigate, addUser, addBusiness, addBusinessesList, addAppointments]);
 
   return (
     <div className="background flex flex-1 items-center justify-center">

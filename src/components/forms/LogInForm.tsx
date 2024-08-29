@@ -52,7 +52,7 @@ export default function LogInForm() {
           addAppointments(result.appointments);
         }
         addBusinessesList(result.businessesList);
-        navigate("/home");
+        navigate("/profile");
       } else if (!result.success) {
         setError(result.message);
       } else {

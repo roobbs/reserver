@@ -86,7 +86,7 @@ export default function ProviderForm() {
         addUser(data.user);
         addBusiness(data.business);
 
-        navigate("/home");
+        navigate("/profile");
       } else {
         setError(data.message);
       }

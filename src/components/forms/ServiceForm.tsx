@@ -51,7 +51,7 @@ export default function ServiceForm() {
       if (result.success) {
         setError(null);
         addBusiness(result.provider);
-        navigate("/home");
+        navigate("/profile");
       } else {
         setError(result.message || "Error en el servidor");
       }
