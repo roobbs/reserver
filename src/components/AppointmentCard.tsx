@@ -46,7 +46,7 @@ export default function AppointmentCard({
   };
 
   return (
-    <div className="rounded bg-white p-4 text-blue-950">
+    <div className="rounded bg-white p-4 text-blue-950 shadow-lg shadow-slate-600">
       <div className="mb-1 border-b border-slate-400 pb-1">
         Tu cita es el dia:{" "}
         <strong className="text-lg">
