@@ -48,8 +48,8 @@ export default function LogInForm() {
         if (result.business !== null) {
           addBusiness(result.business);
         }
-        if (result.appointments !== null) {
-          addAppointments(result.appointments);
+        if (result.appointmentList) {
+          addAppointments(result.appointmentList);
         }
         addBusinessesList(result.businessesList);
         navigate("/profile");
