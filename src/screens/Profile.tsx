@@ -4,6 +4,9 @@ import { TbBusinessplan } from "react-icons/tb";
 import { MdOutlineManageSearch } from "react-icons/md";
 import { Link } from "react-router-dom";
 import BusinessSection from "../components/BusinessSection";
+import { LuMessageSquare } from "react-icons/lu";
+import { MdHistory } from "react-icons/md";
+import { MdOutlineDateRange } from "react-icons/md";
 
 export default function Profile() {
   const { user, business, appointments } = useContext(AuthContext);
@@ -15,30 +18,51 @@ export default function Profile() {
       )
     : [];
   return (
-    <div className="flex flex-1 flex-col justify-between gap-10 bg-slate-300 p-4 py-8">
-      <section className="flex flex-col gap-4 rounded bg-white p-8 shadow-md shadow-slate-600">
-        <div className="text-xl font-bold text-blue-900">Tú información:</div>
-        <div className="flex justify-around rounded">
-          <div className="rounded-sm bg-slate-100 p-12 text-slate-600 shadow-sm shadow-slate-600 transition-all hover:bg-slate-900 hover:text-white">
-            Tienes 0 mensajes
+    <div className="flex flex-1 flex-col justify-between gap-10 bg-gray-200 p-4 py-8">
+      <section className="flex flex-col gap-8 rounded bg-white p-8 shadow-lg shadow-slate-500">
+        <div className="text-xl font-bold text-blue-950">Tú información:</div>
+        <div className="flex flex-wrap justify-around gap-8 rounded">
+          <div className="group flex cursor-pointer flex-col items-center gap-1 rounded-sm border border-transparent bg-gray-100 p-8 px-16 text-slate-950 shadow-md shadow-slate-600 transition-all hover:border-slate-500 hover:bg-slate-900 hover:text-white">
+            <LuMessageSquare
+              size={40}
+              className="text-blue-950 transition-colors group-hover:text-white"
+            />
+            <div>
+              Tienes{" "}
+              <strong className="text-2xl text-blue-800 transition-colors group-hover:text-blue-500">
+                0
+              </strong>{" "}
+              mensajes
+            </div>
           </div>
-          <div
-            onClick={() => {}}
-            className="cursor-pointer rounded-sm bg-slate-100 p-12 text-slate-600 shadow-sm shadow-slate-600 transition-all hover:bg-slate-900 hover:text-white"
-          >
-            Tienes {pendingAppointments?.length} citas pendiente(s)
+          <div className="group flex cursor-pointer flex-col items-center gap-1 rounded-sm border border-transparent bg-gray-100 p-8 px-16 text-slate-950 shadow-md shadow-slate-600 transition-all hover:border-slate-500 hover:bg-slate-900 hover:text-white">
+            <MdOutlineDateRange
+              size={40}
+              className="text-blue-950 transition-colors group-hover:text-white"
+            />
+            <div>
+              Tienes{" "}
+              <strong className="text-2xl text-blue-800 transition-colors group-hover:text-blue-500">
+                {pendingAppointments?.length}
+              </strong>{" "}
+              cita(s) pendiente(s)
+            </div>
           </div>
-          <div className="rounded-sm bg-slate-100 p-12 text-slate-600 shadow-sm shadow-slate-600 transition-all hover:bg-slate-900 hover:text-white">
-            Ver historial de citas
+          <div className="group flex cursor-pointer flex-col items-center gap-1 rounded-sm border border-transparent bg-gray-100 p-8 px-16 text-slate-950 shadow-md shadow-slate-600 transition-all hover:border-slate-500 hover:bg-slate-900 hover:text-white">
+            <MdHistory
+              size={40}
+              className="text-blue-950 transition-colors group-hover:text-white"
+            />
+            <div>Ver historial de citas</div>
           </div>
         </div>
       </section>
 
       <div
         onClick={() => {}}
-        className="flex cursor-pointer items-center gap-2 self-center rounded-md border border-transparent bg-emerald-600 px-4 py-1 text-lg transition-all hover:border-green-500 hover:bg-emerald-800"
+        className="flex cursor-pointer items-center gap-2 self-center rounded-md border border-transparent bg-green-700 px-6 py-3 text-lg font-bold transition-all hover:border-green-500 hover:bg-green-800"
       >
-        <MdOutlineManageSearch size={30} />
+        <MdOutlineManageSearch size={40} />
         Explora los servicios disponibles aqui!
       </div>
 
