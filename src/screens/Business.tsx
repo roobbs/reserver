@@ -6,8 +6,8 @@ export default function Business() {
   const { businessesList } = useContext(AuthContext);
 
   return (
-    <div className="flex flex-1 flex-col gap-4 bg-slate-300 p-6">
-      <div className="text-xl">Descubre nuevos servicios:</div>
+    <div className="font flex flex-1 flex-col gap-8 bg-gray-200 p-6 text-blue-950">
+      <div className="text-xl font-bold">Descubre nuevos servicios:</div>
       <div className="flex flex-col gap-4">
         {businessesList &&
           businessesList.map((el) => <BusinessCard business={el} />)}
