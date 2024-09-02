@@ -7,8 +7,8 @@ interface BusinessCardProps {
 
 export default function BusinessCard({ business }: BusinessCardProps) {
   return (
-    <div className="flex flex-col gap-6 rounded bg-white p-4 text-slate-800">
-      <div className="self-center text-2xl">{business.name}</div>
+    <div className="flex flex-col gap-6 rounded bg-white p-4 text-slate-800 shadow-lg shadow-slate-500">
+      <div className="self-center text-2xl font-bold">{business.name}</div>
       <div className="flex justify-around">
         <div className="flex gap-4 text-lg">
           <div className="font-bold">{business.type}</div>
