@@ -46,6 +46,13 @@ export interface Business {
   updatedAt: Date;
 }
 
+export interface Conversation {
+  _id: string;
+  user: string;
+  business: string;
+  lastMessage: string;
+}
+
 interface AuthContextType {
   user: User | null;
   addUser: (user: User) => void;
@@ -58,6 +65,9 @@ interface AuthContextType {
   addAppointments: (appointment: Appointment[]) => void;
   addSingleAppointment: (appointment: Appointment) => void;
   updateAppointment: (id: string) => void;
+  conversations: Conversation[];
+  addConversations: (conversations: Conversation[]) => void;
+  addSingleConversation: (conversation: Conversation) => void;
 }
 
 interface AuthProviderProps {
@@ -76,6 +86,9 @@ export const AuthContext = createContext<AuthContextType>({
   addAppointments: () => {},
   addSingleAppointment: () => {},
   updateAppointment: () => {},
+  conversations: [],
+  addConversations: () => {},
+  addSingleConversation: () => {},
 });
 
 export default function AuthProvider({ children }: AuthProviderProps) {
@@ -83,6 +96,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
   const [business, setBusiness] = useState<Business | null>(null);
   const [businessesList, setBusinessesList] = useState<Business[]>([]);
   const [appointments, setAppointments] = useState<Appointment[]>([]);
+  const [conversations, setConversations] = useState<Conversation[]>([]);
 
   const addUser = (user: User) => {
     setUser(user);
@@ -117,6 +131,12 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     );
     setAppointments(newAppoinmentsArray);
   };
+  const addConversations = (array: Conversation[]) => {
+    setConversations(array);
+  };
+  const addSingleConversation = (conv: Conversation) => {
+    setConversations((prevConversations) => [...prevConversations, conv]);
+  };
   return (
     <AuthContext.Provider
       value={{
@@ -131,6 +151,9 @@ export default function AuthProvider({ children }: AuthProviderProps) {
         addAppointments,
         addSingleAppointment,
         updateAppointment,
+        conversations,
+        addConversations,
+        addSingleConversation,
       }}
     >
       {children}
