@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { Appointment } from "./auth/AuthContext";
 import { AuthContext } from "./auth/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export default function AppointmentCard({
   appointment,
@@ -8,7 +9,9 @@ export default function AppointmentCard({
   appointment: Appointment;
 }) {
   const [isCanceling, setIsCanceling] = useState(false);
-  const { updateAppointment } = useContext(AuthContext);
+  const { updateAppointment, user, conversations, addSingleConversation } =
+    useContext(AuthContext);
+  const navigate = useNavigate();
 
   const cancelAppointment = async () => {
     setIsCanceling(true);
@@ -35,6 +38,45 @@ export default function AppointmentCard({
       alert("Ocurrió un error al cancelar la cita");
     } finally {
       setIsCanceling(false);
+    }
+  };
+
+  const handleSendMessage = async () => {
+    const existingConversation = conversations.find(
+      (conv) =>
+        conv.user === user?._id &&
+        conv.business._id === appointment.providerId._id,
+    );
+
+    if (existingConversation) {
+      console.log("Conversación ya existe:", existingConversation);
+      navigate("/messages");
+    } else {
+      try {
+        const response = await fetch(`http://localhost:3000/api/conversation`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userId: user?._id,
+            businessId: appointment.providerId._id,
+          }),
+        });
+
+        const data = await response.json();
+
+        console.log(data);
+        if (data.success) {
+          addSingleConversation(data.conversation);
+          navigate("/messages");
+        } else {
+          alert("No se pudo crear la conversación");
+        }
+      } catch (error) {
+        console.error("Error al crear la conversación:", error);
+        alert("Ocurrió un error al crear la conversación");
+      }
     }
   };
 
@@ -73,7 +115,10 @@ export default function AppointmentCard({
         {appointment.serviceId.name}
       </div>
       <div className="flex items-center justify-between">
-        <div className="w-fit cursor-pointer rounded bg-emerald-600 p-2 text-white transition-all hover:bg-emerald-700">
+        <div
+          onClick={handleSendMessage}
+          className="w-fit cursor-pointer rounded bg-emerald-600 p-2 text-white transition-all hover:bg-emerald-700"
+        >
           Enviar mensaje
         </div>
         <button
