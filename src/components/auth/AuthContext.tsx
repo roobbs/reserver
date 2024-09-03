@@ -49,7 +49,10 @@ export interface Business {
 export interface Conversation {
   _id: string;
   user: string;
-  business: string;
+  business: {
+    _id: string;
+    name: string;
+  };
   lastMessage: string;
 }
 
