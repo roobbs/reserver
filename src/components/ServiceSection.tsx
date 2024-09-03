@@ -20,8 +20,9 @@ export default function ServiceSection() {
 
       <div className="flex flex-wrap justify-center gap-8">
         {business?.servicesOffered &&
-          business.servicesOffered.map((service) => (
+          business.servicesOffered.map((service, index) => (
             <ServiceCard
+              key={index}
               name={service.name}
               price={service.price}
               duration={service.duration}

@@ -13,8 +13,10 @@ export default function InfoCard({ title, info }: InfoCardProps) {
         <div className="font-semibold">{title}</div>
       </div>
       <div className="flex flex-col gap-4">
-        {info.map((el) => (
-          <div className="text-gray-600">{el}</div>
+        {info.map((el, index) => (
+          <div key={index} className="text-gray-600">
+            {el}
+          </div>
         ))}
       </div>
     </div>

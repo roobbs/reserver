@@ -10,7 +10,9 @@ export default function Business() {
       <div className="text-xl font-bold">Descubre nuevos servicios:</div>
       <div className="flex flex-col gap-4">
         {businessesList &&
-          businessesList.map((el) => <BusinessCard business={el} />)}
+          businessesList.map((el) => (
+            <BusinessCard business={el} key={el._id} />
+          ))}
       </div>
     </div>
   );
