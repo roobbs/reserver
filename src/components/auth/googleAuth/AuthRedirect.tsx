@@ -4,8 +4,13 @@ import { AuthContext } from "../AuthContext";
 
 export default function AuthRedirect() {
   const navigate = useNavigate();
-  const { addUser, addBusiness, addBusinessesList, addAppointments } =
-    useContext(AuthContext);
+  const {
+    addUser,
+    addBusiness,
+    addBusinessesList,
+    addAppointments,
+    addConversations,
+  } = useContext(AuthContext);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -15,6 +20,7 @@ export default function AuthRedirect() {
     const businessString = params.get("business");
     const businessesListString = params.get("businessesList");
     const appointmentString = params.get("appointments");
+    const conversationsString = params.get("conversations");
 
     (async () => {
       if (token && userString) {
@@ -30,9 +36,13 @@ export default function AuthRedirect() {
           const appointments = appointmentString
             ? JSON.parse(appointmentString)
             : [];
+          const conversations = conversationsString
+            ? JSON.parse(conversationsString)
+            : [];
           await addBusiness(business);
           addBusinessesList(businessesList);
           addAppointments(appointments);
+          addConversations(conversations);
           await addUser(user);
           navigate("/profile");
         } catch (error) {
@@ -42,7 +52,14 @@ export default function AuthRedirect() {
         console.error("Token not found");
       }
     })();
-  }, [navigate, addUser, addBusiness, addBusinessesList, addAppointments]);
+  }, [
+    navigate,
+    addUser,
+    addBusiness,
+    addBusinessesList,
+    addAppointments,
+    addConversations,
+  ]);
 
   return (
     <div className="background flex flex-1 items-center justify-center">
