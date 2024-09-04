@@ -16,9 +16,8 @@ export default function Messages() {
 
   const [selectedConversation, setSelectedConversation] =
     useState<Conversation | null>(null);
-  // const [newMessage, setNewMessage] = useState<string>("");
+  const [newMessage, setNewMessage] = useState<string>("");
 
-  // Escuchar mensajes en tiempo real
   useEffect(() => {
     // if (socket && selectedConversation) {
     //   socket.on("mensaje", (msg: Message) => {
@@ -39,18 +38,18 @@ export default function Messages() {
     setSelectedConversation(conversation);
   };
 
-  // const handleSendMessage = () => {
-  //   if (socket && selectedConversation && newMessage.trim() !== "") {
-  //     const messageData = {
-  //       conversationId: selectedConversation._id,
-  //       sender: user?._id,
-  //       content: newMessage,
-  //     };
+  const handleSendMessage = () => {
+    if (socket && selectedConversation && newMessage.trim() !== "") {
+      const messageData = {
+        conversationId: selectedConversation._id,
+        sender: user?._id,
+        content: newMessage,
+      };
 
-  //     socket.emit("mensaje", messageData);
-  //     setNewMessage("");
-  //   }
-  // };
+      socket.emit("mensaje", messageData);
+      setNewMessage("");
+    }
+  };
 
   return (
     <div className="flex flex-1 gap-8 bg-gray-200 text-blue-950">
@@ -72,31 +71,35 @@ export default function Messages() {
             Selecciona una conversación para enviar un mensaje
           </div>
         )}
-      </div>
-
-      {/* {selectedConversation && (
-        <div className="messages-section">
-          <h2>Mensajes en la Conversación</h2>
-          <div className="messages-list">
-            {selectedConversation.messages.map((message, index) => (
-              <div key={index} className="message-item">
-                <p>
-                  <strong>{message.sender}:</strong> {message.content}
-                </p>
-                <small>{new Date(message.timestamp).toLocaleString()}</small>
+        {selectedConversation && (
+          <>
+            <div className="flex items-center justify-center gap-4 bg-gray-600 p-2 text-white">
+              <div className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-900 bg-slate-900 text-white">
+                {selectedConversation.business.name[0]}
               </div>
-            ))}
-          </div>
-          <input
-            type="text"
-            value={newMessage}
-            onChange={(e) => setNewMessage(e.target.value)}
-            placeholder="Escribe un mensaje..."
-            className="message-input"
-          />
-          <button onClick={handleSendMessage}>Enviar Mensaje</button>
-        </div>
-      )} */}
+              <div className="text-center text-xl font-bold">
+                {selectedConversation.business.name}
+              </div>
+            </div>
+            <div>Mensajes</div>
+            <div className="p flex justify-center gap-4 bg-slate-900 px-8 py-4">
+              <input
+                type="text"
+                value={newMessage}
+                onChange={(e) => setNewMessage(e.target.value)}
+                placeholder="Escribe un mensaje..."
+                className="flex-1 rounded bg-white p-3"
+              />
+              <button
+                onClick={handleSendMessage}
+                className="text-white hover:text-emerald-400"
+              >
+                <IoSend size={30} />
+              </button>
+            </div>
+          </>
+        )}
+      </div>
     </div>
   );
 }
