@@ -6,7 +6,7 @@ import { IoSend } from "react-icons/io5";
 
 interface Message {
   senderId: string;
-  receiverId: string;
+  // receiverId: string;
   conversationId: string;
   content: string;
   createdAt: string;
@@ -24,25 +24,33 @@ export default function Messages() {
   );
 
   useEffect(() => {
-    if (socket) {
-      socket.on("mensaje", (msg: Message) => {
-        msg;
+    if (socket && selectedConversation) {
+      socket.emit("joinConversation", selectedConversation._id); // Emitir al servidor para unirse a la conversación
+
+      // Escuchar los mensajes que llegan y actualizarlos en el estado
+      socket.on("message", (msg: Message) => {
+        if (msg.conversationId === selectedConversation._id) {
+          setConversationMessages((prevMessages) => [...prevMessages, msg]);
+        }
       });
 
       return () => {
-        socket.off("mensaje");
+        socket.off("message");
       };
     }
-  }, [socket]);
+  }, [socket, selectedConversation]);
 
   const handleConversationSelect = async (conversation: Conversation) => {
     setSelectedConversation(conversation);
 
+    console.log("conversacion seleccionada");
+
     try {
       const response = await fetch(
-        `http://localhost:3000/api/conversations/${conversation._id}/messages`,
+        `http://localhost:3000/api/conversation/${conversation._id}/messages`,
       );
       const data = await response.json();
+      console.log(data);
       if (data.succes) {
         setConversationMessages(data.messages);
       }
@@ -55,12 +63,14 @@ export default function Messages() {
     if (socket && selectedConversation && newMessage.trim() !== "") {
       const messageData = {
         conversationId: selectedConversation._id,
-        sender: user?._id,
+        senderId: user?._id,
+        // receiverId: selectedConversation.business._id,
         content: newMessage,
       };
 
-      socket.emit("mensaje", messageData);
+      socket.emit("message", messageData);
       setNewMessage("");
+      // setConversationMessages((prevMessages) => [...prevMessages, messageData]);
     }
   };
 
@@ -96,7 +106,10 @@ export default function Messages() {
             </div>
             <div>
               {conversationMessages.map((msg, index) => (
-                <div key={index}>{msg.content}</div>
+                <div key={index}>
+                  <div>{msg.content}</div>
+                  <div>{msg.senderId}</div>
+                </div>
               ))}
             </div>
             <div className="p flex justify-center gap-4 bg-slate-900 px-8 py-4">
