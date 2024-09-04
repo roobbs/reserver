@@ -4,11 +4,13 @@ import { AuthContext, Conversation } from "../components/auth/AuthContext";
 import ConversationCard from "../components/ConversationCard";
 import { IoSend } from "react-icons/io5";
 
-// interface Message {
-//   sender: string;
-//   content: string;
-//   timestamp: string;
-// }
+interface Message {
+  senderId: string;
+  receiverId: string;
+  conversationId: string;
+  content: string;
+  createdAt: string;
+}
 
 export default function Messages() {
   const { socket } = useContext(SocketContext);
@@ -17,25 +19,36 @@ export default function Messages() {
   const [selectedConversation, setSelectedConversation] =
     useState<Conversation | null>(null);
   const [newMessage, setNewMessage] = useState<string>("");
+  const [conversationMessages, setConversationMessages] = useState<Message[]>(
+    [],
+  );
 
   useEffect(() => {
-    // if (socket && selectedConversation) {
-    //   socket.on("mensaje", (msg: Message) => {
-    //     if (selectedConversation._id === msg.conversationId) {
-    //       setSelectedConversation((prev) => ({
-    //         ...prev!,
-    //         messages: [...prev!.messages, msg],
-    //       }));
-    //     }
-    //   });
-    //   return () => {
-    //     socket.off("mensaje");
-    //   };
-    // }
-  }, [socket, selectedConversation]);
+    if (socket) {
+      socket.on("mensaje", (msg: Message) => {
+        msg;
+      });
 
-  const handleConversationSelect = (conversation: Conversation) => {
+      return () => {
+        socket.off("mensaje");
+      };
+    }
+  }, [socket]);
+
+  const handleConversationSelect = async (conversation: Conversation) => {
     setSelectedConversation(conversation);
+
+    try {
+      const response = await fetch(
+        `http://localhost:3000/api/conversations/${conversation._id}/messages`,
+      );
+      const data = await response.json();
+      if (data.succes) {
+        setConversationMessages(data.messages);
+      }
+    } catch (error) {
+      console.error("Error fetching messages:", error);
+    }
   };
 
   const handleSendMessage = () => {
@@ -81,7 +94,11 @@ export default function Messages() {
                 {selectedConversation.business.name}
               </div>
             </div>
-            <div>Mensajes</div>
+            <div>
+              {conversationMessages.map((msg, index) => (
+                <div key={index}>{msg.content}</div>
+              ))}
+            </div>
             <div className="p flex justify-center gap-4 bg-slate-900 px-8 py-4">
               <input
                 type="text"
