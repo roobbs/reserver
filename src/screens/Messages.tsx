@@ -1,12 +1,14 @@
 import { useContext, useEffect, useState } from "react";
 import { SocketContext } from "../components/socket/SocketContext";
 import { AuthContext, Conversation } from "../components/auth/AuthContext";
+import ConversationCard from "../components/ConversationCard";
+import { IoSend } from "react-icons/io5";
 
-interface Message {
-  sender: string;
-  content: string;
-  timestamp: string;
-}
+// interface Message {
+//   sender: string;
+//   content: string;
+//   timestamp: string;
+// }
 
 export default function Messages() {
   const { socket } = useContext(SocketContext);
@@ -14,61 +16,41 @@ export default function Messages() {
 
   const [selectedConversation, setSelectedConversation] =
     useState<Conversation | null>(null);
-  const [newMessage, setNewMessage] = useState<string>("");
-
-  // Obtener conversaciones del usuario cuando el componente se monta
-  useEffect(() => {
-    async function fetchConversations() {
-      try {
-        const response = await fetch(
-          `http://localhost:3000/api/conversations/${user?.id}`,
-        );
-        const data = await response.json();
-        setConversations(data);
-      } catch (error) {
-        console.error("Error al obtener conversaciones:", error);
-      }
-    }
-
-    if (user?._id) {
-      fetchConversations();
-    }
-  }, [user]);
+  // const [newMessage, setNewMessage] = useState<string>("");
 
   // Escuchar mensajes en tiempo real
   useEffect(() => {
-    if (socket && selectedConversation) {
-      socket.on("mensaje", (msg: Message) => {
-        if (selectedConversation._id === msg.conversationId) {
-          setSelectedConversation((prev) => ({
-            ...prev!,
-            messages: [...prev!.messages, msg],
-          }));
-        }
-      });
-
-      return () => {
-        socket.off("mensaje");
-      };
-    }
+    // if (socket && selectedConversation) {
+    //   socket.on("mensaje", (msg: Message) => {
+    //     if (selectedConversation._id === msg.conversationId) {
+    //       setSelectedConversation((prev) => ({
+    //         ...prev!,
+    //         messages: [...prev!.messages, msg],
+    //       }));
+    //     }
+    //   });
+    //   return () => {
+    //     socket.off("mensaje");
+    //   };
+    // }
   }, [socket, selectedConversation]);
 
   const handleConversationSelect = (conversation: Conversation) => {
     setSelectedConversation(conversation);
   };
 
-  const handleSendMessage = () => {
-    if (socket && selectedConversation && newMessage.trim() !== "") {
-      const messageData = {
-        conversationId: selectedConversation._id,
-        sender: user?._id,
-        content: newMessage,
-      };
+  // const handleSendMessage = () => {
+  //   if (socket && selectedConversation && newMessage.trim() !== "") {
+  //     const messageData = {
+  //       conversationId: selectedConversation._id,
+  //       sender: user?._id,
+  //       content: newMessage,
+  //     };
 
-      socket.emit("mensaje", messageData);
-      setNewMessage("");
-    }
-  };
+  //     socket.emit("mensaje", messageData);
+  //     setNewMessage("");
+  //   }
+  // };
 
   return (
     <div className="flex flex-1 gap-8 bg-gray-200 text-blue-950">
@@ -77,17 +59,19 @@ export default function Messages() {
           <div>Aún no tienes ninguna conversación</div>
         )}
         {conversations.map((conversation) => (
-          <div
+          <ConversationCard
             key={conversation._id}
             onClick={() => handleConversationSelect(conversation)}
-            className="conversation-item"
-          >
-            <p>{conversation.business}</p>
-          </div>
+            conv={conversation}
+          />
         ))}
       </div>
-      <div className="flex-1 rounded-l-lg bg-white p-8">
-        <div>Selecciona una conversación para enviar un mensaje</div>
+      <div className="flex flex-1 flex-col justify-between rounded-l-lg bg-white">
+        {!selectedConversation && (
+          <div className="self-center justify-self-center">
+            Selecciona una conversación para enviar un mensaje
+          </div>
+        )}
       </div>
 
       {/* {selectedConversation && (
