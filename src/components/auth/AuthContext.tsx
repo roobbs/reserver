@@ -48,7 +48,7 @@ export interface Business {
 
 export interface Conversation {
   _id: string;
-  user: string;
+  user: { _id: string; first_name: string };
   business: {
     _id: string;
     name: string;
@@ -71,6 +71,8 @@ interface AuthContextType {
   conversations: Conversation[];
   addConversations: (conversations: Conversation[]) => void;
   addSingleConversation: (conversation: Conversation) => void;
+  businessConversations: Conversation[] | null;
+  addBusinessConversations: (conversations: Conversation[]) => void;
 }
 
 interface AuthProviderProps {
@@ -92,6 +94,8 @@ export const AuthContext = createContext<AuthContextType>({
   conversations: [],
   addConversations: () => {},
   addSingleConversation: () => {},
+  businessConversations: null,
+  addBusinessConversations: () => {},
 });
 
 export default function AuthProvider({ children }: AuthProviderProps) {
@@ -100,6 +104,9 @@ export default function AuthProvider({ children }: AuthProviderProps) {
   const [businessesList, setBusinessesList] = useState<Business[]>([]);
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [conversations, setConversations] = useState<Conversation[]>([]);
+  const [businessConversations, setBusinessConversations] = useState<
+    Conversation[] | null
+  >(null);
 
   const addUser = (user: User) => {
     setUser(user);
@@ -140,6 +147,9 @@ export default function AuthProvider({ children }: AuthProviderProps) {
   const addSingleConversation = (conv: Conversation) => {
     setConversations((prevConversations) => [...prevConversations, conv]);
   };
+  const addBusinessConversations = (array: Conversation[]) => {
+    setBusinessConversations(array);
+  };
   return (
     <AuthContext.Provider
       value={{
@@ -157,6 +167,8 @@ export default function AuthProvider({ children }: AuthProviderProps) {
         conversations,
         addConversations,
         addSingleConversation,
+        businessConversations,
+        addBusinessConversations,
       }}
     >
       {children}
