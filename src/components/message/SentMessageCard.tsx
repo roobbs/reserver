@@ -7,11 +7,25 @@ interface Message {
 }
 
 export default function SentMessageCard({ message }: { message: Message }) {
+  const messageDate = new Date(message.createdAt);
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const isToday = messageDate >= today;
+
   return (
-    <div className="max-w-[70%] self-end rounded-xl bg-blue-800 px-4 py-2 text-white">
-      <div className="font-bold">{message.content}</div>
+    <div className="flex max-w-[70%] flex-col gap-1 self-end">
+      <div className="rounded-xl bg-blue-800 px-4 py-2 text-white">
+        <div className="font-bold">{message.content}</div>
+      </div>
       <div className="text-right text-sm">
-        {new Date(message.createdAt).toLocaleDateString()}
+        {isToday
+          ? messageDate.toLocaleTimeString([], {
+              hour: "2-digit",
+              minute: "2-digit",
+            })
+          : `${messageDate.toLocaleDateString()} ${messageDate.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}`}
       </div>
     </div>
   );
