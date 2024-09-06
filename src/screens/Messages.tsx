@@ -1,13 +1,14 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { SocketContext } from "../components/socket/SocketContext";
 import { AuthContext, Conversation } from "../components/auth/AuthContext";
 import ConversationCard from "../components/ConversationCard";
 import BusinessConversationCard from "../components/BusinessConversationCard";
 import { IoSend } from "react-icons/io5";
+import ReceivedMessageCard from "../components/message/ReceivedMessageCard";
+import SentMessageCard from "../components/message/SentMessageCard";
 
 interface Message {
   senderId: string;
-  // receiverId: string;
   conversationId: string;
   content: string;
   createdAt: string;
@@ -24,16 +25,17 @@ export default function Messages() {
   const [conversationMessages, setConversationMessages] = useState<Message[]>(
     [],
   );
-  console.log(businessConversations);
+
+  const messagesEndRef = useRef<HTMLDivElement | null>(null); // Ref para el final del contenedor de mensajes
 
   useEffect(() => {
     if (socket && selectedConversation) {
-      socket.emit("joinConversation", selectedConversation._id); // Emitir al servidor para unirse a la conversación
+      socket.emit("joinConversation", selectedConversation._id);
 
-      // Escuchar los mensajes que llegan y actualizarlos en el estado
       socket.on("message", (msg: Message) => {
         if (msg.conversationId === selectedConversation._id) {
           setConversationMessages((prevMessages) => [...prevMessages, msg]);
+          scrollToBottom(); // Desplazar hacia abajo cuando llegue un nuevo mensaje
         }
       });
 
@@ -43,17 +45,22 @@ export default function Messages() {
     }
   }, [socket, selectedConversation]);
 
+  useEffect(() => {
+    scrollToBottom(); // Desplazar hacia abajo al cargar mensajes
+  }, [conversationMessages]);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
   const handleConversationSelect = async (conversation: Conversation) => {
     setSelectedConversation(conversation);
-
-    console.log("conversacion seleccionada");
 
     try {
       const response = await fetch(
         `http://localhost:3000/api/conversation/${conversation._id}/messages`,
       );
       const data = await response.json();
-      console.log(data);
       if (data.succes) {
         setConversationMessages(data.messages);
       }
@@ -67,13 +74,11 @@ export default function Messages() {
       const messageData = {
         conversationId: selectedConversation._id,
         senderId: user?._id,
-        // receiverId: selectedConversation.business._id,
         content: newMessage,
       };
 
       socket.emit("message", messageData);
       setNewMessage("");
-      // setConversationMessages((prevMessages) => [...prevMessages, messageData]);
     }
   };
 
@@ -118,13 +123,15 @@ export default function Messages() {
                 {selectedConversation.business.name}
               </div>
             </div>
-            <div>
-              {conversationMessages.map((msg, index) => (
-                <div key={index}>
-                  <div>{msg.content}</div>
-                  <div>{msg.senderId}</div>
-                </div>
-              ))}
+            <div className="flex max-h-[55vh] flex-1 flex-col gap-2 overflow-y-auto scroll-smooth p-4">
+              {conversationMessages.map((msg, index) => {
+                if (msg.senderId === user?._id) {
+                  return <SentMessageCard key={index} message={msg} />;
+                } else {
+                  return <ReceivedMessageCard key={index} message={msg} />;
+                }
+              })}
+              <div ref={messagesEndRef} />
             </div>
             <div className="p flex justify-center gap-4 bg-slate-900 px-8 py-4">
               <input
