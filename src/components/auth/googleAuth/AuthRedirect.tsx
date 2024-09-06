@@ -10,6 +10,7 @@ export default function AuthRedirect() {
     addBusinessesList,
     addAppointments,
     addConversations,
+    addBusinessConversations,
   } = useContext(AuthContext);
 
   useEffect(() => {
@@ -21,6 +22,7 @@ export default function AuthRedirect() {
     const businessesListString = params.get("businessesList");
     const appointmentString = params.get("appointments");
     const conversationsString = params.get("conversations");
+    const businessConversationsString = params.get("businessConversations");
 
     (async () => {
       if (token && userString) {
@@ -33,17 +35,24 @@ export default function AuthRedirect() {
           const businessesList = businessesListString
             ? JSON.parse(businessesListString)
             : [];
+          const businessConversationsList = businessConversationsString
+            ? JSON.parse(businessConversationsString)
+            : null;
           const appointments = appointmentString
             ? JSON.parse(appointmentString)
             : [];
           const conversations = conversationsString
             ? JSON.parse(conversationsString)
             : [];
-          await addBusiness(business);
+          addBusiness(business);
           addBusinessesList(businessesList);
           addAppointments(appointments);
           addConversations(conversations);
-          await addUser(user);
+          addBusinessConversations(businessConversationsList);
+          addUser(user);
+          console.log(user);
+          console.log(conversations);
+          console.log(businessConversationsList);
           navigate("/profile");
         } catch (error) {
           console.error("Failed to parse user:", error);
@@ -59,6 +68,7 @@ export default function AuthRedirect() {
     addBusinessesList,
     addAppointments,
     addConversations,
+    addBusinessConversations,
   ]);
 
   return (
