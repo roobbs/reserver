@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { SocketContext } from "../components/socket/SocketContext";
 import { AuthContext, Conversation } from "../components/auth/AuthContext";
 import ConversationCard from "../components/ConversationCard";
+import BusinessConversationCard from "../components/BusinessConversationCard";
 import { IoSend } from "react-icons/io5";
 
 interface Message {
@@ -14,7 +15,8 @@ interface Message {
 
 export default function Messages() {
   const { socket } = useContext(SocketContext);
-  const { user, conversations } = useContext(AuthContext);
+  const { user, conversations, businessConversations } =
+    useContext(AuthContext);
 
   const [selectedConversation, setSelectedConversation] =
     useState<Conversation | null>(null);
@@ -22,6 +24,7 @@ export default function Messages() {
   const [conversationMessages, setConversationMessages] = useState<Message[]>(
     [],
   );
+  console.log(businessConversations);
 
   useEffect(() => {
     if (socket && selectedConversation) {
@@ -76,8 +79,8 @@ export default function Messages() {
 
   return (
     <div className="flex flex-1 gap-8 bg-gray-200 text-blue-950">
-      <div className="w-1/3 px-4 py-8">
-        {conversations.length === 0 && (
+      <div className="flex w-1/3 flex-col gap-4 px-4 py-8">
+        {conversations.length === 0 && !businessConversations && (
           <div>Aún no tienes ninguna conversación</div>
         )}
         {conversations.map((conversation) => (
@@ -87,6 +90,16 @@ export default function Messages() {
             conv={conversation}
           />
         ))}
+
+        {businessConversations && <div>Las conversaciones de tu negocio:</div>}
+        {businessConversations &&
+          businessConversations.map((conversation) => (
+            <BusinessConversationCard
+              key={conversation._id}
+              onClick={() => handleConversationSelect(conversation)}
+              conv={conversation}
+            />
+          ))}
       </div>
       <div className="flex flex-1 flex-col justify-between rounded-l-lg bg-white">
         {!selectedConversation && (
@@ -98,7 +111,8 @@ export default function Messages() {
           <>
             <div className="flex items-center justify-center gap-4 bg-gray-600 p-2 text-white">
               <div className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-900 bg-slate-900 text-white">
-                {selectedConversation.business.name[0]}
+                {selectedConversation.business.name[0] ||
+                  selectedConversation.user.first_name[0]}
               </div>
               <div className="text-center text-xl font-bold">
                 {selectedConversation.business.name}
