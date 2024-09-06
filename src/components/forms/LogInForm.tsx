@@ -22,6 +22,7 @@ export default function LogInForm() {
     addBusinessesList,
     addAppointments,
     addConversations,
+    addBusinessConversations,
   } = useContext(AuthContext);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -58,6 +59,9 @@ export default function LogInForm() {
         }
         if (result.conversationList) {
           addConversations(result.conversationList);
+        }
+        if (result.businessConversations) {
+          addBusinessConversations(result.businessConversations);
         }
         addBusinessesList(result.businessesList);
         navigate("/profile");
