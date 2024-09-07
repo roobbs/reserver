@@ -2,6 +2,11 @@ import { useState, useContext } from "react";
 import { Appointment } from "./auth/AuthContext";
 import { AuthContext } from "./auth/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { IoIosTimer } from "react-icons/io";
+import { MdCancel } from "react-icons/md";
+import { MdMessage } from "react-icons/md";
+import { MdOutlineWork } from "react-icons/md";
+import { FaRegCalendarCheck } from "react-icons/fa";
 
 export default function AppointmentCard({
   appointment,
@@ -44,7 +49,7 @@ export default function AppointmentCard({
   const handleSendMessage = async () => {
     const existingConversation = conversations.find(
       (conv) =>
-        conv.user === user?._id &&
+        conv.user._id === user?._id &&
         conv.business._id === appointment.providerId._id,
     );
 
@@ -88,16 +93,19 @@ export default function AppointmentCard({
   };
 
   return (
-    <div className="rounded bg-white p-4 text-blue-950 shadow-lg shadow-slate-600">
+    <div className="flex flex-col gap-2 rounded border border-gray-400 bg-white p-4 text-blue-950 shadow-lg hover:bg-gray-50">
       <div className="mb-1 border-b border-slate-400 pb-1">
-        Tu cita es el dia:{" "}
-        <strong className="text-lg">
-          {new Date(appointment.date).toLocaleDateString("es-ES", options)}
-        </strong>
+        <div className="flex items-center gap-2">
+          <FaRegCalendarCheck size={30} />
+          <strong className="text-lg">
+            {new Date(appointment.date).toLocaleDateString("es-ES", options)}
+          </strong>
+        </div>
       </div>
       <div className="flex flex-col gap-0">
         <div className="text-sm">HORA:</div>
-        <div className="self-center rounded border bg-slate-900 p-1 text-xl font-bold text-white">
+        <div className="flex items-center gap-2 self-center rounded border bg-slate-900 p-1 text-xl font-bold text-white">
+          <IoIosTimer />
           {appointment.time}
         </div>
       </div>
@@ -111,24 +119,26 @@ export default function AppointmentCard({
         </div>
       </div>
 
-      <div className="my-2 text-center font-bold text-slate-700">
-        {appointment.serviceId.name}
+      <div className="my-2 flex items-center justify-center gap-2 text-center font-bold text-slate-700">
+        <MdOutlineWork /> {appointment.serviceId.name}
       </div>
       <div className="flex items-center justify-between">
         <div
           onClick={handleSendMessage}
-          className="w-fit cursor-pointer rounded bg-emerald-600 p-2 text-white transition-all hover:bg-emerald-700"
+          className="flex w-fit cursor-pointer items-center gap-2 rounded bg-blue-800 p-2 text-white transition-all hover:bg-blue-950"
         >
+          <MdMessage size={20} />
           Enviar mensaje
         </div>
         <button
-          className={`w-fit cursor-pointer rounded bg-red-800 p-2 text-sm text-white transition-all hover:bg-red-600 ${
+          className={`flex w-fit cursor-pointer items-center gap-2 rounded bg-red-800 p-2 text-sm text-white transition-all hover:bg-red-600 ${
             isCanceling ? "cursor-not-allowed opacity-50" : ""
           }`}
           onClick={cancelAppointment}
           disabled={isCanceling}
         >
-          {isCanceling ? "Cancelando..." : "Cancelar cita"}
+          <MdCancel size={20} />
+          {isCanceling ? "Cancelando..." : "Cancelar"}
         </button>
       </div>
     </div>
