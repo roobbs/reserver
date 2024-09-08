@@ -5,6 +5,7 @@ import PastAppointmentCard from "../components/PastAppoinmentCard";
 import { IoToday } from "react-icons/io5";
 import { IoIosToday } from "react-icons/io";
 import { CiCircleChevUp, CiCircleChevDown } from "react-icons/ci";
+import { IoIosTimer } from "react-icons/io";
 
 export default function Appointments() {
   const { appointments } = useContext(AuthContext);
@@ -31,10 +32,10 @@ export default function Appointments() {
     : [];
 
   return (
-    <div className="flex flex-1 flex-col gap-12 bg-gray-200 p-6 pb-16 text-slate-900">
+    <main className="flex flex-1 flex-col justify-between gap-10 bg-gray-100 p-4 py-8">
       {todayAppointments.length > 0 && (
-        <div className="flex flex-col gap-2">
-          <h3 className="flex cursor-pointer items-center gap-2 self-center border-b border-slate-500 px-2 py-1 pl-4 text-3xl font-bold">
+        <div className="flex flex-col gap-2 rounded-lg bg-white p-8 shadow-md shadow-slate-500">
+          <h3 className="flex items-center gap-2 px-2 py-1 text-xl font-bold text-blue-950">
             <IoToday /> Cita(s) de Hoy
           </h3>
           <div className="flex justify-center gap-6">
@@ -45,8 +46,8 @@ export default function Appointments() {
         </div>
       )}
       {futureAppointments.length > 0 && (
-        <div className="flex flex-col gap-4">
-          <h3 className="border-wh flex cursor-pointer items-center gap-2 border-b pl-4 text-3xl">
+        <div className="flex flex-col gap-2 rounded-lg bg-white p-8 shadow-md shadow-slate-500">
+          <h3 className="flex items-center gap-2 px-2 py-1 text-xl font-bold text-blue-950">
             <IoIosToday />
             Citas Pendientes:
           </h3>
@@ -58,12 +59,15 @@ export default function Appointments() {
         </div>
       )}
       {pastAppointments.length > 0 && (
-        <div className="flex flex-col gap-4 rounded bg-white p-4 text-slate-900 shadow-lg shadow-slate-500">
+        <div className="flex flex-col gap-6 rounded-lg bg-white p-8 shadow-md shadow-slate-500">
           <h3
             onClick={() => setShowPastAppointments(!showPastAppointments)}
-            className="flex cursor-pointer items-center gap-2 border-b border-b-slate-400 pb-2 text-3xl hover:text-blue-900"
+            className="flex cursor-pointer items-center justify-between gap-2 border-b border-b-slate-400 px-2 py-1 text-2xl font-bold text-blue-950 hover:text-blue-800"
           >
-            Historial de citas{" "}
+            <div className="flex items-center gap-2">
+              <IoIosTimer />
+              Historial de citas
+            </div>
             {showPastAppointments ? <CiCircleChevUp /> : <CiCircleChevDown />}
           </h3>
           {showPastAppointments && (
@@ -76,8 +80,10 @@ export default function Appointments() {
         </div>
       )}
       {appointments?.length === 0 && (
-        <div className="self-center text-3xl">Aún no tienes ninguna cita</div>
+        <h3 className="flex items-center gap-2 self-center px-2 py-1 text-xl font-bold text-blue-950">
+          Aún no tienes ninguna cita
+        </h3>
       )}
-    </div>
+    </main>
   );
 }
