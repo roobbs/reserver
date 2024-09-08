@@ -15,8 +15,8 @@ export default function ReceivedMessageCard({ message }: { message: Message }) {
 
   return (
     <div className="flex max-w-[70%] flex-col gap-1 self-start">
-      <div className="rounded-xl border border-blue-950 bg-white px-4 py-2 text-blue-800">
-        <div className="font-bold">{message.content}</div>
+      <div className="rounded-xl border border-gray-300 bg-gray-200 px-4 py-2 text-blue-900">
+        <strong>{message.content}</strong>
       </div>
       <div className="text-left text-sm">
         {isToday
