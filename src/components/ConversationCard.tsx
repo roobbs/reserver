@@ -12,14 +12,14 @@ export default function ConversationCard({
   return (
     <div
       onClick={onClick}
-      className="flex cursor-pointer items-center gap-4 overflow-hidden rounded bg-white px-4 py-2 transition-colors hover:bg-slate-900 hover:text-white"
+      className="flex cursor-pointer items-center gap-4 overflow-hidden rounded-full bg-blue-950 px-4 py-2 text-white transition-colors hover:bg-slate-900"
     >
-      <div className="flex h-8 w-8 items-center justify-center rounded-full border border-white bg-slate-900 text-white">
+      <div className="flex h-8 w-8 items-center justify-center rounded-full border border-white bg-white font-bold text-blue-800">
         {conv.business.name[0]}
       </div>
       <div>
-        <div className="text-lg font-bold">{conv.business.name}</div>
-        <div className="text-center text-slate-500">
+        <div className="text-md font-bold">{conv.business.name}</div>
+        <div className="text-center italic text-gray-300">
           {conv.lastMessage
             ? conv.lastMessage
             : "Inicia una conversacion ahora"}
