@@ -21,12 +21,12 @@ export default function PastAppointmentCard({
         Hora: <strong>{appointment.time}</strong>
       </div>
       <div className="flex items-center gap-2">
-        Servicio:<strong> {appointment.providerId.name}</strong>
+        Servicio:<strong>{appointment.serviceId.name}</strong>
       </div>
       <div className="font-bold">$ {appointment.serviceId.price}</div>
       <div className="flex items-center gap-2">
         <MdOutlineWork />
-        {appointment.serviceId.name}
+        {appointment.providerId.name}
       </div>
       {appointment.status === "canceled" && (
         <div className="flex items-center gap-2 self-center rounded bg-red-600 p-2 text-center text-white">

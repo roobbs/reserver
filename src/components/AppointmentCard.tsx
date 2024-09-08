@@ -112,7 +112,7 @@ export default function AppointmentCard({
       <div className="flex flex-col gap-0 border-b border-slate-400 pb-2">
         <div className="text-sm">SERVICIO ADQUIRIDO:</div>
         <div className="flex justify-around">
-          <div className="text-xl font-bold">{appointment.providerId.name}</div>
+          <div className="text-xl font-bold">{appointment.serviceId.name}</div>
           <div className="text-xl font-bold">
             $ {appointment.serviceId.price}
           </div>
@@ -120,7 +120,7 @@ export default function AppointmentCard({
       </div>
 
       <div className="my-2 flex items-center justify-center gap-2 text-center font-bold text-slate-700">
-        <MdOutlineWork /> {appointment.serviceId.name}
+        <MdOutlineWork /> {appointment.providerId.name}
       </div>
       <div className="flex items-center justify-between">
         <div
