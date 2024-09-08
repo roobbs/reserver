@@ -3,13 +3,14 @@ import { AuthContext } from "../components/auth/AuthContext";
 import { TbBusinessplan } from "react-icons/tb";
 import { MdOutlineManageSearch } from "react-icons/md";
 import { Link } from "react-router-dom";
-import BusinessSection from "../components/BusinessSection";
 import { LuMessageSquare } from "react-icons/lu";
 import { MdHistory } from "react-icons/md";
 import { MdOutlineDateRange } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
   const { user, business, appointments } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const today = new Date().toISOString().split("T")[0];
   const pendingAppointments = appointments
@@ -18,11 +19,16 @@ export default function Profile() {
       )
     : [];
   return (
-    <div className="flex flex-1 flex-col justify-between gap-10 bg-gray-100 p-4 py-8">
+    <main className="flex flex-1 flex-col justify-between gap-10 bg-gray-100 p-4 py-8">
       <section className="flex flex-col gap-12 rounded-lg bg-white p-8 shadow-lg shadow-slate-500">
         <div className="text-xl font-bold text-blue-950">Tú información</div>
         <div className="flex flex-wrap justify-around gap-8 rounded">
-          <div className="group flex cursor-pointer flex-col items-center gap-1 rounded-lg border border-slate-200 p-8 px-16 text-slate-950 shadow-sm shadow-slate-600 transition-colors duration-300 hover:border-transparent hover:bg-slate-900 hover:text-white">
+          <div
+            onClick={() => {
+              navigate("/messages");
+            }}
+            className="group flex cursor-pointer flex-col items-center gap-1 rounded-lg border border-slate-200 p-8 px-16 text-slate-950 shadow-sm shadow-slate-600 transition-colors duration-300 hover:border-transparent hover:bg-slate-900 hover:text-white"
+          >
             <LuMessageSquare
               size={40}
               className="text-blue-950 transition-colors group-hover:text-white"
@@ -35,7 +41,12 @@ export default function Profile() {
               mensajes
             </div>
           </div>
-          <div className="group flex cursor-pointer flex-col items-center gap-1 rounded-lg border border-slate-200 p-8 px-16 text-slate-950 shadow-sm shadow-slate-600 transition-colors duration-300 hover:border-transparent hover:bg-slate-900 hover:text-white">
+          <div
+            onClick={() => {
+              navigate("/appointments");
+            }}
+            className="group flex cursor-pointer flex-col items-center gap-1 rounded-lg border border-slate-200 p-8 px-16 text-slate-950 shadow-sm shadow-slate-600 transition-colors duration-300 hover:border-transparent hover:bg-slate-900 hover:text-white"
+          >
             <MdOutlineDateRange
               size={40}
               className="text-blue-950 transition-colors group-hover:text-white"
@@ -48,7 +59,12 @@ export default function Profile() {
               cita(s) pendiente(s)
             </div>
           </div>
-          <div className="group flex cursor-pointer flex-col items-center gap-1 rounded-lg border border-slate-200 p-8 px-16 text-slate-950 shadow-sm shadow-slate-600 transition-colors duration-300 hover:border-transparent hover:bg-slate-900 hover:text-white">
+          <div
+            onClick={() => {
+              navigate("/appointments");
+            }}
+            className="group flex cursor-pointer flex-col items-center gap-1 rounded-lg border border-slate-200 p-8 px-16 text-slate-950 shadow-sm shadow-slate-600 transition-colors duration-300 hover:border-transparent hover:bg-slate-900 hover:text-white"
+          >
             <MdHistory
               size={40}
               className="text-blue-950 transition-colors group-hover:text-white"
@@ -56,25 +72,32 @@ export default function Profile() {
             <div>Ver historial de citas</div>
           </div>
         </div>
-        <div
-          onClick={() => {}}
-          className="flex cursor-pointer items-center gap-2 self-center rounded-full bg-gray-800 px-8 py-3 text-lg font-bold text-white transition duration-300 hover:bg-slate-950"
+        {business && (
+          <Link
+            to={"/myBusiness"}
+            className="flex cursor-pointer items-center gap-2 self-center rounded-full bg-blue-800 px-8 py-3 text-lg font-bold text-white transition duration-300 hover:bg-blue-950"
+          >
+            <TbBusinessplan size={25} />
+            Revisa tu negocio aqui
+          </Link>
+        )}
+        <Link
+          to={"/services"}
+          className="flex cursor-pointer items-center gap-2 self-center rounded-full bg-indigo-950 px-8 py-3 text-lg font-bold text-white transition duration-300 hover:bg-slate-950"
         >
           <MdOutlineManageSearch size={40} />
-          Explora los servicios disponibles aqui!
-        </div>
+          Explora los servicios disponibles
+        </Link>
         {!user?.service_provider && (
           <Link
             to={"createBusiness"}
-            className="flex cursor-pointer items-center gap-2 self-center rounded-full bg-blue-800 px-8 py-3 text-lg font-bold text-white transition duration-300 hover:bg-blue-900"
+            className="flex cursor-pointer items-center gap-2 self-center rounded-full bg-blue-800 px-8 py-3 text-lg font-bold text-white transition duration-300 hover:bg-blue-950"
           >
             <TbBusinessplan size={25} />
             Pública tu propio negocio
           </Link>
         )}
       </section>
-
-      {business && <BusinessSection />}
-    </div>
+    </main>
   );
 }
