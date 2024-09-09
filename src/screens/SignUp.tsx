@@ -7,17 +7,17 @@ export default function SignUp() {
   const navigate = useNavigate();
 
   return (
-    <div className="background relative flex flex-1 flex-col place-content-center place-items-center gap-4 p-6">
-      <div className="text-3xl font-semibold text-cyan-400">Crea tu cuenta</div>
+    <div className="relative flex flex-1 flex-col place-content-center place-items-center gap-4 bg-gray-100 p-6">
+      <div className="text-2xl font-bold text-blue-950">Crea tu cuenta</div>
       <GoogleAuthButton />
-      <div className="text-gray-400">O registrate aqui:</div>
+      <div className="text-gray-700">O registrate aqui:</div>
       <SignUpForm />
       <CiCalendar
         onClick={() => {
           navigate("/");
         }}
         size={40}
-        className="absolute cursor-pointer hover:text-emerald-400"
+        className="absolute cursor-pointer text-slate-900 hover:text-blue-800"
         style={{ top: "20px", left: "30px" }}
       />
     </div>
