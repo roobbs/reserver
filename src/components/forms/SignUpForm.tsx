@@ -68,7 +68,7 @@ function SignUpForm() {
     <>
       <form
         onSubmit={handleSubmit}
-        className="formComponent flex w-fit flex-col gap-4 rounded-md border border-white p-4"
+        className="formComponent flex w-fit flex-col gap-4 rounded-md border border-gray-500 p-4"
       >
         <div className="inputContainer">
           <label>Nombre</label>
@@ -125,7 +125,7 @@ function SignUpForm() {
 
         <button
           type="submit"
-          className="m-3 rounded-md bg-white px-2 py-1 text-blue-900"
+          className="m-3 rounded-md bg-blue-900 px-2 py-1 text-white transition-colors duration-300 hover:bg-slate-900"
         >
           Registrarse
         </button>
