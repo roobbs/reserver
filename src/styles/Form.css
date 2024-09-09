@@ -1,6 +1,6 @@
 .formComponent {
-  background-color: rgba(255, 255, 255, 0.129);
   backdrop-filter: blur(1px);
+  background-color: white;
   position: relative;
 }
 .inputContainer {
@@ -11,7 +11,7 @@
   position: relative;
 
   & label {
-    color: white;
+    color: rgb(71, 87, 116);
   }
 
   & input,
@@ -27,11 +27,12 @@
       font-weight: 600;
       color: rgb(0, 0, 0);
       background-color: rgb(255, 255, 255);
+      border-color: rgb(0, 72, 241);
     }
 
     &:valid {
-      background-color: rgba(80, 255, 161, 0.401);
-      border-color: rgb(0, 255, 208);
+      background-color: rgb(0, 150, 97);
+      border-color: rgb(1, 86, 0);
       color: white;
     }
   }
