@@ -8,7 +8,7 @@ export default function GoogleAuthButton() {
   return (
     <div
       onClick={authenticateUser}
-      className="flex cursor-pointer items-center gap-2 rounded-md border border-white p-2 text-lg transition-all hover:bg-white hover:text-blue-900"
+      className="flex cursor-pointer items-center gap-2 rounded-md border border-blue-800 bg-white p-2 text-lg text-blue-900 transition-all hover:bg-blue-950 hover:text-white"
     >
       Inicia sesion con
       <FcGoogle size={40} />

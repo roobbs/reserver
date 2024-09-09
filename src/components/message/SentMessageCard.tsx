@@ -17,7 +17,7 @@ export default function SentMessageCard({ message }: { message: Message }) {
   return (
     <div className="flex max-w-[70%] flex-col gap-1 self-end">
       <div className="rounded-xl bg-blue-800 px-4 py-2 text-white">
-        <div className="font-bold">{message.content}</div>
+        <div>{message.content}</div>
       </div>
       <div className="text-right text-sm">
         {isToday

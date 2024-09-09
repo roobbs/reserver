@@ -6,14 +6,18 @@ export default function Business() {
   const { businessesList } = useContext(AuthContext);
 
   return (
-    <div className="flex flex-1 flex-col gap-8 bg-gray-200 p-6 text-blue-950">
-      <div className="text-xl font-bold">Descubre nuevos servicios:</div>
-      <div className="flex flex-col gap-4">
-        {businessesList &&
-          businessesList.map((el) => (
-            <BusinessCard business={el} key={el._id} />
-          ))}
-      </div>
-    </div>
+    <main className="flex flex-1 flex-col justify-between gap-10 bg-gray-100 p-4 py-8">
+      <section className="flex flex-col gap-12 rounded-lg bg-white p-8 shadow-lg shadow-slate-500">
+        <div className="text-xl font-bold text-blue-950">
+          Descubre nuevos servicios:
+        </div>
+        <div className="flex flex-col gap-4">
+          {businessesList &&
+            businessesList.map((el) => (
+              <BusinessCard business={el} key={el._id} />
+            ))}
+        </div>
+      </section>
+    </main>
   );
 }

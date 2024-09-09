@@ -8,9 +8,10 @@ import SignUp from "./screens/SignUp";
 import LogIn from "./screens/LogIn";
 import AuthRedirect from "./components/auth/googleAuth/AuthRedirect";
 import PrivateRoute from "./components/PrivateRoute";
-
+import UserBusiness from "./screens/UserBusiness";
 import Profile from "./screens/Profile";
 import Appointments from "./screens/Appointments";
+
 import Business from "./screens/Business";
 import Messages from "./screens/Messages";
 
@@ -33,10 +34,7 @@ export default function Router() {
       path: "/ingresar",
       element: <LogIn />,
     },
-    {
-      path: "/ingresar",
-      element: <LogIn />,
-    },
+
     {
       path: "/auth",
       element: <AuthRedirect />,
@@ -48,15 +46,22 @@ export default function Router() {
       children: [
         { index: true, element: <Profile /> },
         { path: "createBusiness", element: <CreateBusiness /> },
-        { path: "newService", element: <CreateService /> },
       ],
     },
     {
-      path: "/business",
+      path: "/services",
       element: <PrivateRoute />,
       children: [
         { index: true, element: <Business /> },
         { path: "service/:id", element: <ServiceInfo /> },
+      ],
+    },
+    {
+      path: "/myBusiness",
+      element: <PrivateRoute />,
+      children: [
+        { index: true, element: <UserBusiness /> },
+        { path: "newService", element: <CreateService /> },
       ],
     },
     {

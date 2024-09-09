@@ -26,7 +26,7 @@ export default function Messages() {
     [],
   );
 
-  const messagesEndRef = useRef<HTMLDivElement | null>(null); // Ref para el final del contenedor de mensajes
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (socket && selectedConversation) {
@@ -35,7 +35,7 @@ export default function Messages() {
       socket.on("message", (msg: Message) => {
         if (msg.conversationId === selectedConversation._id) {
           setConversationMessages((prevMessages) => [...prevMessages, msg]);
-          scrollToBottom(); // Desplazar hacia abajo cuando llegue un nuevo mensaje
+          scrollToBottom();
         }
       });
 
@@ -46,7 +46,7 @@ export default function Messages() {
   }, [socket, selectedConversation]);
 
   useEffect(() => {
-    scrollToBottom(); // Desplazar hacia abajo al cargar mensajes
+    scrollToBottom();
   }, [conversationMessages]);
 
   const scrollToBottom = () => {
@@ -83,74 +83,89 @@ export default function Messages() {
   };
 
   return (
-    <div className="flex flex-1 gap-8 bg-gray-200 text-blue-950">
-      <div className="flex w-1/3 flex-col gap-4 px-4 py-8">
-        {conversations.length === 0 && !businessConversations && (
-          <div>Aún no tienes ninguna conversación</div>
-        )}
-        {conversations.map((conversation) => (
-          <ConversationCard
-            key={conversation._id}
-            onClick={() => handleConversationSelect(conversation)}
-            conv={conversation}
-          />
-        ))}
-
-        {businessConversations && <div>Las conversaciones de tu negocio:</div>}
-        {businessConversations &&
-          businessConversations.map((conversation) => (
-            <BusinessConversationCard
+    <main className="flex flex-1 flex-col justify-between gap-10 bg-gray-100 p-4 py-8 text-blue-950">
+      <section className="flex overflow-hidden rounded-lg bg-white shadow-lg shadow-slate-500">
+        <div className="flex w-1/3 flex-col gap-4 border-r border-gray-400 px-4 py-8">
+          {conversations.length === 0 && !businessConversations && (
+            <div className="text-lg font-bold text-blue-950">
+              Aún no tienes ninguna conversación
+            </div>
+          )}
+          {conversations.length > 0 && (
+            <div className="text-lg font-bold text-blue-950">
+              Conversaciones
+            </div>
+          )}
+          {conversations.map((conversation) => (
+            <ConversationCard
               key={conversation._id}
               onClick={() => handleConversationSelect(conversation)}
               conv={conversation}
             />
           ))}
-      </div>
-      <div className="flex flex-1 flex-col justify-between rounded-l-lg bg-white">
-        {!selectedConversation && (
-          <div className="self-center justify-self-center">
-            Selecciona una conversación para enviar un mensaje
-          </div>
-        )}
-        {selectedConversation && (
-          <>
-            <div className="flex items-center justify-center gap-4 bg-gray-600 p-2 text-white">
-              <div className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-900 bg-slate-900 text-white">
-                {selectedConversation.business.name[0] ||
-                  selectedConversation.user.first_name[0]}
-              </div>
-              <div className="text-center text-xl font-bold">
-                {selectedConversation.business.name}
-              </div>
+          {businessConversations && (
+            <div className="text-lg font-bold text-blue-950">
+              Conversaciones de tu negocio
             </div>
-            <div className="flex max-h-[55vh] flex-1 flex-col gap-2 overflow-y-auto scroll-smooth p-4">
-              {conversationMessages.map((msg, index) => {
-                if (msg.senderId === user?._id) {
-                  return <SentMessageCard key={index} message={msg} />;
-                } else {
-                  return <ReceivedMessageCard key={index} message={msg} />;
-                }
-              })}
-              <div ref={messagesEndRef} />
-            </div>
-            <div className="p flex justify-center gap-4 bg-slate-900 px-8 py-4">
-              <input
-                type="text"
-                value={newMessage}
-                onChange={(e) => setNewMessage(e.target.value)}
-                placeholder="Escribe un mensaje..."
-                className="flex-1 rounded bg-white p-3"
+          )}
+          {businessConversations &&
+            businessConversations.map((conversation) => (
+              <BusinessConversationCard
+                key={conversation._id}
+                onClick={() => handleConversationSelect(conversation)}
+                conv={conversation}
               />
-              <button
-                onClick={handleSendMessage}
-                className="text-white hover:text-emerald-400"
-              >
-                <IoSend size={30} />
-              </button>
+            ))}
+        </div>
+        <div className="flex flex-1 flex-col justify-between bg-white">
+          {!selectedConversation && (
+            <div className="flex flex-1 items-center justify-center text-lg font-bold text-blue-950">
+              Selecciona una conversación para enviar un mensaje
             </div>
-          </>
-        )}
-      </div>
-    </div>
+          )}
+          {selectedConversation && (
+            <>
+              <div className="flex items-center justify-center gap-4 border-b border-gray-400 p-2">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-900 bg-slate-900 text-white">
+                  {selectedConversation.user._id === user?._id
+                    ? selectedConversation.business.name[0]
+                    : selectedConversation.user.first_name[0]}
+                </div>
+                <div className="text-center text-xl font-bold">
+                  {selectedConversation.user._id === user?._id
+                    ? selectedConversation.business.name
+                    : selectedConversation.user.first_name}
+                </div>
+              </div>
+              <div className="flex max-h-[55vh] flex-1 flex-col gap-2 overflow-y-auto scroll-smooth p-4">
+                {conversationMessages.map((msg, index) => {
+                  if (msg.senderId === user?._id) {
+                    return <SentMessageCard key={index} message={msg} />;
+                  } else {
+                    return <ReceivedMessageCard key={index} message={msg} />;
+                  }
+                })}
+                <div ref={messagesEndRef} />
+              </div>
+              <div className="p flex justify-center gap-4 border-t border-gray-400 px-8 py-4">
+                <input
+                  type="text"
+                  value={newMessage}
+                  onChange={(e) => setNewMessage(e.target.value)}
+                  placeholder="Escribe un mensaje..."
+                  className="flex-1 rounded-full border border-gray-400 bg-white p-3"
+                />
+                <button
+                  onClick={handleSendMessage}
+                  className="hover:text-blue-800"
+                >
+                  <IoSend size={30} />
+                </button>
+              </div>
+            </>
+          )}
+        </div>
+      </section>
+    </main>
   );
 }

@@ -10,7 +10,7 @@ export default function ServiceSection() {
 
   return (
     <div className="relative flex flex-col gap-4">
-      <div className="text-xl font-bold">Tus servicios:</div>
+      <div className="text-xl font-bold text-blue-950">Tus servicios:</div>
 
       {business?.servicesOffered.length === 0 && (
         <div className="self-center rounded p-2 text-xl font-bold text-slate-800 shadow-sm shadow-slate-600">
@@ -32,7 +32,7 @@ export default function ServiceSection() {
           onClick={() => {
             navigate("newService");
           }}
-          className="flex h-full cursor-pointer items-center gap-2 self-center justify-self-center rounded-md border border-transparent bg-emerald-600 px-4 py-12 text-lg text-white transition-all hover:border-green-500 hover:bg-emerald-800"
+          className="flex h-full cursor-pointer flex-col items-center justify-center gap-2 self-center justify-self-center rounded-2xl bg-blue-700 px-6 py-4 text-xl font-bold text-white transition-colors duration-500 hover:bg-slate-900"
         >
           <MdOutlineMedicalServices size={35} />
           Agrega un servicio
