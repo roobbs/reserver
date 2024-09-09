@@ -1,3 +1,6 @@
+import { IoMdTime } from "react-icons/io";
+import { IoPricetagOutline } from "react-icons/io5";
+
 interface ServiceCardProps {
   name: string;
   price: number;
@@ -10,10 +13,15 @@ export default function ServiceCard({
   duration,
 }: ServiceCardProps) {
   return (
-    <div className="flex flex-col items-center rounded border border-slate-700 bg-indigo-700 p-4 font-bold text-white shadow-md shadow-slate-500">
+    <div className="flex cursor-pointer flex-col items-center rounded-2xl border border-slate-700 bg-indigo-950 p-4 font-bold text-white shadow-md shadow-slate-400 hover:bg-indigo-900">
       <div className="mb-4 border-b border-white pb-2 text-xl">{name}</div>
-      <div>${price}</div>
-      <div>Duration: {duration} min.</div>
+      <div className="flex items-center gap-2">
+        <IoPricetagOutline size={25} />${price}
+      </div>
+      <div className="flex items-center gap-2">
+        <IoMdTime size={25} />
+        Duration: {duration} min.
+      </div>
     </div>
   );
 }
