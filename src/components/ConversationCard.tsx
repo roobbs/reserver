@@ -19,7 +19,7 @@ export default function ConversationCard({
       </div>
       <div>
         <div className="text-md font-bold">{conv.business.name}</div>
-        <div className="text-center italic text-gray-300">
+        <div className="850p:hidden 755p:block text-center italic text-gray-300">
           {conv.lastMessage
             ? conv.lastMessage
             : "Inicia una conversacion ahora"}

@@ -14,7 +14,7 @@ export default function ReceivedMessageCard({ message }: { message: Message }) {
   const isToday = messageDate >= today;
 
   return (
-    <div className="flex max-w-[70%] flex-col gap-1 self-start">
+    <div className="755p:max-w-[80%] flex max-w-[70%] flex-col gap-1 self-start">
       <div className="rounded-xl border border-gray-300 bg-gray-200 px-4 py-2 text-blue-900">
         <strong>{message.content}</strong>
       </div>
