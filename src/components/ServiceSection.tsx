@@ -32,7 +32,7 @@ export default function ServiceSection() {
           onClick={() => {
             navigate("newService");
           }}
-          className="flex h-full cursor-pointer flex-col items-center justify-center gap-2 self-center justify-self-center rounded-2xl bg-blue-700 px-6 py-4 text-xl font-bold text-white transition-colors duration-500 hover:bg-slate-900"
+          className="550p:w-full flex h-max cursor-pointer flex-col items-center justify-center gap-2 self-center justify-self-center rounded-2xl bg-blue-700 px-6 py-4 text-xl font-bold text-white transition-colors duration-500 hover:bg-slate-900"
         >
           <MdOutlineMedicalServices size={35} />
           Agrega un servicio

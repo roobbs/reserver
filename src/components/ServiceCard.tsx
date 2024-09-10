@@ -13,7 +13,7 @@ export default function ServiceCard({
   duration,
 }: ServiceCardProps) {
   return (
-    <div className="flex cursor-pointer flex-col items-center rounded-2xl border border-slate-700 bg-indigo-950 p-4 font-bold text-white shadow-md shadow-slate-400 hover:bg-indigo-900">
+    <div className="550p:w-full flex cursor-pointer flex-col items-center rounded-2xl border border-slate-700 bg-indigo-950 p-4 font-bold text-white shadow-md shadow-slate-400 hover:bg-indigo-900">
       <div className="mb-4 border-b border-white pb-2 text-xl">{name}</div>
       <div className="flex items-center gap-2">
         <IoPricetagOutline size={25} />${price}

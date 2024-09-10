@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { AuthContext } from "../components/auth/AuthContext";
 import { MdBusinessCenter } from "react-icons/md";
 import ServiceSection from "../components/ServiceSection";
+import { Link } from "react-router-dom";
 import { MdOutlineDateRange } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { LuMessageSquare } from "react-icons/lu";
@@ -12,7 +13,7 @@ export default function UserBusiness() {
 
   return (
     <main className="flex flex-1 flex-col justify-between bg-gray-100 p-4 py-8">
-      <section className="flex flex-col gap-6 rounded-lg bg-white p-8 text-blue-900 shadow-lg shadow-slate-500">
+      <section className="720p:p-4 flex flex-col gap-6 rounded-lg bg-white p-8 text-blue-900 shadow-lg shadow-slate-500">
         <div className="flex flex-col">
           <div className="text-xl font-bold text-blue-950">Tú negocio</div>
 
@@ -28,7 +29,7 @@ export default function UserBusiness() {
           </div>
           <div className="flex flex-col gap-2">
             <div className="font-bold">Disponibilidad:</div>
-            <div className="flex gap-1 self-center">
+            <div className="flex flex-wrap justify-center gap-1 self-center">
               {business?.availability?.map((day) => (
                 <div key={day} className="rounded bg-gray-500 p-1 text-white">
                   {day}
@@ -45,14 +46,22 @@ export default function UserBusiness() {
             <div className="self-center">{business?.location}</div>
           </div>
         </div>
+        <Link
+          to={"/services"}
+          className="755p:w-full flex cursor-pointer items-center justify-center gap-2 self-center rounded-full bg-indigo-950 px-8 py-3 text-lg font-bold text-white transition duration-300 hover:bg-slate-950"
+        >
+          <LuMessageSquare size={40} />
+          Mensajes de tu negocio
+        </Link>
         <div className="flex flex-col gap-4">
-          <div className="text-xl font-bold text-blue-950">Información</div>
+          <div className="text-xl font-bold text-blue-950">Citas</div>
+
           <div className="flex justify-center gap-4">
             <div
               onClick={() => {
                 navigate("/appointments");
               }}
-              className="group flex cursor-pointer flex-col items-center gap-1 rounded-lg border border-slate-200 p-8 px-16 text-slate-950 shadow-sm shadow-slate-600 transition-colors duration-300 hover:border-transparent hover:bg-slate-900 hover:text-white"
+              className="720p:px-4 group flex cursor-pointer flex-col items-center gap-1 rounded-lg border border-slate-200 p-8 px-16 text-slate-950 shadow-sm shadow-slate-600 transition-colors duration-300 hover:border-transparent hover:bg-slate-900 hover:text-white"
             >
               <MdOutlineDateRange
                 size={30}
@@ -64,24 +73,6 @@ export default function UserBusiness() {
                   0
                 </strong>{" "}
                 cita(s) pendiente(s)
-              </div>
-            </div>
-            <div
-              onClick={() => {
-                navigate("/appointments");
-              }}
-              className="group flex cursor-pointer flex-col items-center gap-1 rounded-lg border border-slate-200 p-8 px-16 text-slate-950 shadow-sm shadow-slate-600 transition-colors duration-300 hover:border-transparent hover:bg-slate-900 hover:text-white"
-            >
-              <LuMessageSquare
-                size={30}
-                className="text-blue-950 transition-colors group-hover:text-white"
-              />
-              <div>
-                Tú negocio tiene{" "}
-                <strong className="text-2xl text-blue-800 transition-colors group-hover:text-blue-500">
-                  0
-                </strong>{" "}
-                mensaje(s) pendiente(s)
               </div>
             </div>
           </div>
