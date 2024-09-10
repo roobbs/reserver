@@ -16,7 +16,7 @@ export default function BusinessCard({ business }: BusinessCardProps) {
         {business.name}
       </div>
       <div className="flex flex-wrap justify-center gap-4">
-        <div className="flex flex-col items-center justify-around rounded-xl border border-gray-400 bg-white p-4">
+        <div className="650p:w-full flex flex-col items-center justify-around gap-2 rounded-xl border border-gray-400 bg-white p-4">
           <div className="flex items-center gap-2 text-xl font-bold text-black">
             {business.type}
           </div>

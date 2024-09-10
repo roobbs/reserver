@@ -18,15 +18,15 @@ export default function ServiceInfoCard({ service }: ServiceInfoProps) {
   }
 
   return (
-    <div className="flex cursor-pointer flex-col gap-2 rounded-xl border border-slate-400 p-4 shadow-md transition-all duration-500 hover:bg-slate-800 hover:text-white">
+    <div className="500p:w-full flex cursor-pointer flex-col gap-2 rounded-xl border border-slate-400 p-4 shadow-md transition-all duration-500 hover:bg-slate-800 hover:text-white">
       <div className="flex items-center gap-2 self-center text-lg font-bold">
         <CiShoppingTag />
         {service.name}
       </div>
-      <div className="italic">{service.description} </div>
-      <div className="flex items-center gap-2">
+      <div className="self-center italic">{service.description} </div>
+      <div className="flex items-center gap-2 self-center">
         <IoMdTime size={22} />
-        {service.duration}min.
+        {service.duration} min.
       </div>
       <div className="self-center text-2xl font-bold">${service.price} </div>
       <div

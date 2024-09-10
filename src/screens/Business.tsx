@@ -7,7 +7,7 @@ export default function Business() {
 
   return (
     <main className="flex flex-1 flex-col justify-between gap-10 bg-gray-100 p-4 py-8">
-      <section className="flex flex-col gap-12 rounded-lg bg-white p-8 shadow-lg shadow-slate-500">
+      <section className="550p:p-4 flex flex-col gap-12 rounded-lg bg-white p-8 shadow-lg shadow-slate-500">
         <div className="text-xl font-bold text-blue-950">
           Descubre nuevos servicios:
         </div>
