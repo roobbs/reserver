@@ -27,7 +27,7 @@ export default function Profile() {
             onClick={() => {
               navigate("/messages");
             }}
-            className="group flex cursor-pointer flex-col items-center gap-1 rounded-lg border border-slate-200 p-8 px-16 text-slate-950 shadow-sm shadow-slate-600 transition-colors duration-300 hover:border-transparent hover:bg-slate-900 hover:text-white"
+            className="755p:w-full 550p:px-4 group flex cursor-pointer flex-col items-center gap-1 rounded-lg border border-slate-200 p-8 px-16 text-slate-950 shadow-sm shadow-slate-600 transition-colors duration-300 hover:border-transparent hover:bg-slate-900 hover:text-white"
           >
             <LuMessageSquare
               size={40}
@@ -45,13 +45,13 @@ export default function Profile() {
             onClick={() => {
               navigate("/appointments");
             }}
-            className="group flex cursor-pointer flex-col items-center gap-1 rounded-lg border border-slate-200 p-8 px-16 text-slate-950 shadow-sm shadow-slate-600 transition-colors duration-300 hover:border-transparent hover:bg-slate-900 hover:text-white"
+            className="755p:w-full 550p:px-4 group flex cursor-pointer flex-col items-center gap-1 rounded-lg border border-slate-200 p-8 px-16 text-slate-950 shadow-sm shadow-slate-600 transition-colors duration-300 hover:border-transparent hover:bg-slate-900 hover:text-white"
           >
             <MdOutlineDateRange
               size={40}
               className="text-blue-950 transition-colors group-hover:text-white"
             />
-            <div>
+            <div className="text-center">
               Tienes{" "}
               <strong className="text-2xl text-blue-800 transition-colors group-hover:text-blue-500">
                 {pendingAppointments?.length}
@@ -63,7 +63,7 @@ export default function Profile() {
             onClick={() => {
               navigate("/appointments");
             }}
-            className="group flex cursor-pointer flex-col items-center gap-1 rounded-lg border border-slate-200 p-8 px-16 text-slate-950 shadow-sm shadow-slate-600 transition-colors duration-300 hover:border-transparent hover:bg-slate-900 hover:text-white"
+            className="755p:w-full 550p:px-4 group flex cursor-pointer flex-col items-center gap-1 rounded-lg border border-slate-200 p-8 px-16 text-slate-950 shadow-sm shadow-slate-600 transition-colors duration-300 hover:border-transparent hover:bg-slate-900 hover:text-white"
           >
             <MdHistory
               size={40}
@@ -75,7 +75,7 @@ export default function Profile() {
         {business && (
           <Link
             to={"/myBusiness"}
-            className="flex cursor-pointer items-center gap-2 self-center rounded-full bg-blue-800 px-8 py-3 text-lg font-bold text-white transition duration-300 hover:bg-blue-950"
+            className="755p:w-full flex cursor-pointer items-center justify-center gap-2 self-center rounded-full bg-blue-800 px-8 py-3 text-lg font-bold text-white transition duration-300 hover:bg-blue-950"
           >
             <TbBusinessplan size={25} />
             Revisa tu negocio aqui
@@ -83,7 +83,7 @@ export default function Profile() {
         )}
         <Link
           to={"/services"}
-          className="flex cursor-pointer items-center gap-2 self-center rounded-full bg-indigo-950 px-8 py-3 text-lg font-bold text-white transition duration-300 hover:bg-slate-950"
+          className="755p:w-full flex cursor-pointer items-center justify-center gap-2 self-center rounded-full bg-indigo-950 px-8 py-3 text-lg font-bold text-white transition duration-300 hover:bg-slate-950"
         >
           <MdOutlineManageSearch size={40} />
           Explora los servicios disponibles
@@ -91,7 +91,7 @@ export default function Profile() {
         {!user?.service_provider && (
           <Link
             to={"createBusiness"}
-            className="flex cursor-pointer items-center gap-2 self-center rounded-full bg-blue-800 px-8 py-3 text-lg font-bold text-white transition duration-300 hover:bg-blue-950"
+            className="755p:w-full flex cursor-pointer items-center justify-center gap-2 self-center rounded-full bg-blue-800 px-8 py-3 text-lg font-bold text-white transition duration-300 hover:bg-blue-950"
           >
             <TbBusinessplan size={25} />
             Pública tu propio negocio
