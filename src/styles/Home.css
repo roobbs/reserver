@@ -6,7 +6,6 @@
   padding: 2px;
   border-radius: 5px;
   transition-duration: 400ms;
-  /* border: 1px solid transparent; */
   &:hover {
     background-color: rgb(255, 255, 255);
     color: rgb(0, 0, 41);
@@ -20,4 +19,49 @@
 .closeSesion {
   top: 100%;
   right: 2rem;
+}
+
+/*header*/
+.headerIcons {
+  cursor: pointer;
+  width: fit-content;
+  cursor: pointer;
+  display: none;
+  align-self: center;
+}
+
+@media screen and (max-width: 1180px) {
+  .headerIcons .closeIcon {
+    display: none;
+  }
+  .headerIcons {
+    display: inline-flex;
+  }
+
+  .menuContainer {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    height: fit-content;
+    width: 100%;
+    padding: 0;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(0, 0, 88);
+    overflow: hidden;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: 0.4s ease;
+  }
+
+  #checkMenu:checked ~ .headerIcons .menuIcon {
+    display: none;
+  }
+  #checkMenu:checked ~ .headerIcons .closeIcon {
+    display: inline-flex;
+  }
+
+  #checkMenu:checked ~ .menuContainer {
+    transform: scaleY(1);
+  }
 }

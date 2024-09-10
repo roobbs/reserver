@@ -10,6 +10,8 @@ import { TbCalendarUser } from "react-icons/tb";
 import { MdOutlineMessage } from "react-icons/md";
 import { ImStatsBars } from "react-icons/im";
 import "../styles/Home.css";
+import { IoMenu } from "react-icons/io5";
+import { IoIosCloseCircleOutline } from "react-icons/io";
 
 export default function MainHeader() {
   const { logOutUser, user, business } = useContext(AuthContext);
@@ -22,12 +24,18 @@ export default function MainHeader() {
   return (
     <>
       <CreatedBy />
-      <header className="relative flex items-center justify-between border bg-white px-12 py-1 text-blue-950 shadow-sm last:flex">
+      <header className="550p:px-4 relative flex items-center justify-between border bg-white px-12 py-1 text-blue-950 shadow-sm last:flex">
+        <input type="checkbox" id="checkMenu" className="hidden" />
+        <label htmlFor="checkMenu" className="headerIcons">
+          <IoMenu className="menuIcon" size={40} />
+          <IoIosCloseCircleOutline className="closeIcon" size={40} />
+        </label>
+
         <div className="flex cursor-none items-center gap-1 text-cyan-900 transition-colors duration-300 hover:text-emerald-500">
           <CiCalendar size={35} />
           <div className="text-xl font-bold">RESERVER</div>
         </div>
-        <ul className="flex justify-around gap-12 px-8 py-2 text-sm text-slate-900">
+        <ul className="menuContainer 1180p:gap-6 1180p:py-8 flex justify-around gap-12 px-8 py-2 text-sm text-slate-900">
           <li
             onClick={() => navigate("/profile")}
             className={
@@ -86,7 +94,7 @@ export default function MainHeader() {
         <input type="checkbox" id="check" className="hidden" />
         <label
           htmlFor="check"
-          className="flex cursor-pointer items-center gap-2 rounded-lg border border-transparent p-1 px-6 text-lg transition-all hover:border-blue-900"
+          className="550p:px-3 flex cursor-pointer items-center gap-2 rounded-lg border border-transparent p-1 px-6 text-lg transition-all hover:border-blue-900"
         >
           {user?.first_name}
           <CiUser
