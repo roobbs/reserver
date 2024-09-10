@@ -34,7 +34,7 @@ export default function Appointments() {
   return (
     <main className="flex flex-1 flex-col justify-between gap-10 bg-gray-100 p-4 py-8">
       {todayAppointments.length > 0 && (
-        <div className="flex flex-col gap-2 rounded-lg bg-white p-8 shadow-md shadow-slate-500">
+        <div className="550p:p-2 flex flex-col gap-2 rounded-lg bg-white p-8 shadow-md shadow-slate-500">
           <h3 className="flex items-center gap-2 px-2 py-1 text-xl font-bold text-blue-950">
             <IoToday /> Cita(s) de Hoy
           </h3>
@@ -46,12 +46,12 @@ export default function Appointments() {
         </div>
       )}
       {futureAppointments.length > 0 && (
-        <div className="flex flex-col gap-2 rounded-lg bg-white p-8 shadow-md shadow-slate-500">
+        <div className="550p:p-2 flex flex-col gap-2 rounded-lg bg-white p-8 shadow-md shadow-slate-500">
           <h3 className="flex items-center gap-2 px-2 py-1 text-xl font-bold text-blue-950">
             <IoIosToday />
             Citas Pendientes:
           </h3>
-          <div className="flex justify-center gap-6">
+          <div className="flex flex-wrap justify-center gap-6">
             {futureAppointments.map((a, index) => (
               <AppointmentCard key={index} appointment={a} />
             ))}
@@ -59,7 +59,7 @@ export default function Appointments() {
         </div>
       )}
       {pastAppointments.length > 0 && (
-        <div className="flex flex-col gap-6 rounded-lg bg-white p-8 shadow-md shadow-slate-500">
+        <div className="550p:p-2 flex flex-col gap-6 rounded-lg bg-white p-8 shadow-md shadow-slate-500">
           <h3
             onClick={() => setShowPastAppointments(!showPastAppointments)}
             className="flex cursor-pointer items-center justify-between gap-2 border-b border-b-slate-400 px-2 py-1 text-2xl font-bold text-blue-950 hover:text-blue-800"
@@ -71,7 +71,7 @@ export default function Appointments() {
             {showPastAppointments ? <CiCircleChevUp /> : <CiCircleChevDown />}
           </h3>
           {showPastAppointments && (
-            <div className="flex justify-center gap-6">
+            <div className="flex flex-wrap justify-center gap-6">
               {pastAppointments.map((a, index) => (
                 <PastAppointmentCard key={index} appointment={a} />
               ))}
