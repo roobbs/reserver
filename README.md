@@ -1,30 +1,17 @@
-# React + TypeScript + Vite
+# Reserver - Plataforma de Reservas de Servicios
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Reserver** es una aplicación web desarrollada con React que permite a los usuarios descubrir negocios, explorar los servicios que estos ofrecen y realizar reservas de manera fácil e intuitiva. La interfaz de usuario está diseñada para ser simple y atractiva, brindando una experiencia fluida.
 
-Currently, two official plugins are available:
+## Características
+- **Exploración de Negocios:** Navega por diferentes negocios y descubre los servicios que ofrecen.
+- **Detalles de Servicios:** Visualiza información detallada de cada servicio, incluyendo descripción, duración, precio, e imágenes.
+- **Reservas Rápidas:** Realiza reservas de manera eficiente seleccionando el negocio y servicio deseado.
+- **Gestión de Reservas:** Consulta tus reservas activas y su estado desde tu perfil de usuario.
+- **Perfil de Usuario:** Administra tu información personal y revisa tus reservas anteriores.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tecnologías Utilizadas
+- **React:** Librería de JavaScript para crear la interfaz de usuario.
+- **React Router:** Manejo de rutas y navegación entre diferentes páginas.
+- **Context API:** Gestión del estado global para manejar la información de usuarios y reservas.
+- **CSS:** Estilos personalizados para la aplicación.
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
